@@ -4,10 +4,9 @@ from rest_framework_simplejwt.tokens import RefreshToken
 
 User = get_user_model()
 
-class LoginSerializer(serializers.Serializer):
+class LoginSerializer(serializers.Serializer ):
     email = serializers.EmailField()
     password = serializers.CharField(write_only=True)
-
     def validate(self, data):
         email = data.get("email")
         password = data.get("password")
@@ -16,7 +15,7 @@ class LoginSerializer(serializers.Serializer):
             raise serializers.ValidationError("Only @estin.dz emails are allowed.")
 
         # Authenticate using email instead of username
-        user = authenticate(username=email, password=password) 
+        user = authenticate(request=self.context.get("request"), email=email, password=password)
 
         if not user:
             raise serializers.ValidationError("Invalid email or password.")

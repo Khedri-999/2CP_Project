@@ -9,8 +9,8 @@ import img1 from'../assets/picture.jpg';
 
 const itemArray= [
   {id:1,poster:'ghacene',type:'found',name:'student card',image:'../assets/download1.png',place:'library',time:"13:05",isClaimed:true,category:'card',discription:'ww'},
-  {id:2,poster:'ghacene',type:'lost',name:'charger ',image:'../assets/download1.png',place:'risidance',time:"22:05",isClaimed:false,category:'all',discription:'qq'},
-  {id:3,poster:'ghacene',type:'lost',name:'glasses',image:'../assets/download1.png',place:'cafe',time:"07:25",isClaimed:true,category:'key',discription:'ffff '},
+  {id:2,poster:'ghacene',type:'found',name:'charger ',image:'../assets/download1.png',place:'risidance',time:"22:05",isClaimed:false,category:'all',discription:'qq'},
+  {id:3,poster:'ghacene',type:'found',name:'glasses',image:'../assets/download1.png',place:'cafe',time:"07:25",isClaimed:true,category:'key',discription:'ffff '},
   {id:4,poster:'ghacene',type:'archive',name:'student card',image:'../assets/download1.png',place:'library',time:"13:05",isClaimed:true,category:'card',discription:''},
   {id:5,poster:'ghacene',type:'found',name:'charger ',image:'../assets/download1.png',place:'risidance',time:"22:05",isClaimed:false,category:'all',discription:'rr'},
   {id:6,poster:'ghacene',type:'found',name:'glasses',image:'../assets/download1.png',place:'cafe',time:"07:25",isClaimed:true,category:'key',discription:'ppp'},

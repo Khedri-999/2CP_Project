@@ -1,0 +1,117 @@
+.requests-container {
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+h2 {
+  text-align: center;
+  color: #007bff;
+  font-size: 24px;
+  margin-bottom: 15px;
+}
+
+.empty {
+  text-align: center;
+  color: #888;
+  font-style: italic;
+}
+
+.requests-list {
+  list-style: none;
+  padding: 0;
+}
+
+.request-item {
+  background: #ffffff;
+  padding: 15px;
+  margin: 12px 0;
+  border-radius: 8px;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out, border-color 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+.request-item:hover {
+  transform: scale(1.03);
+}
+
+/* 🟡 Status Colors */
+.request-item.pending {
+  border-left: 6px solid orange;
+  transition: border-color 0.3s ease-in-out;
+}
+
+.request-item.accepted {
+  border-left: 6px solid green;
+  transition: border-color 0.3s ease-in-out;
+}
+
+.request-item.rejected {
+  border-left: 6px solid red;
+  transition: border-color 0.3s ease-in-out;
+}
+
+.status {
+  font-weight: bold;
+  text-transform: capitalize;
+  margin-bottom: 5px;
+  transition: color 0.3s ease-in-out;
+}
+
+.phone {
+  font-weight: bold;
+  color: #28a745;
+}
+
+/* ✅ Buttons */
+.actions {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+.accept-btn {
+  background: green;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out;
+}
+
+.accept-btn:hover {
+  background: darkgreen;
+}
+
+.reject-btn {
+  background: red;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out;
+}
+
+.reject-btn:hover {
+  background: darkred;
+}

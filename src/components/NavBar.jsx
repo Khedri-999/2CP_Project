@@ -12,6 +12,12 @@ function NavBar(){
         </div>
 
         <div className='nav-buttons'>
+            <Link to='/Home/MyClaims' className='MyClaims-link'>
+            <button className='MyClaims-btn'>my claims</button>
+            </Link>
+            <Link to='/Home/Requests' className='Requests-link'>
+            <button className='Requests-btn'>requests</button>
+            </Link>
             <Link to='/report' className='report-link'>
             <button className='report-btn'>report</button>
             </Link>  

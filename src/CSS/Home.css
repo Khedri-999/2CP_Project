@@ -1,10 +1,11 @@
 .items-container{
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(233, 233, 233);
   display:grid;
   grid-template-columns: 1fr 1fr 1fr;
   row-gap: 10px;
   column-gap: 10px;
-  padding-top: 150px;
+  padding-top: 120px;
+  padding-right: 3px;
 }
 
 .header{
@@ -58,7 +59,8 @@
   background-color: white;
   display: grid;
   grid-template-columns: 2fr 1fr;
-  padding: 20px;
+  width: 80%;
+  height: 80%;
   border-radius: 10px;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
 }

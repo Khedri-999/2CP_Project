@@ -1,52 +1,75 @@
 import React, { useState } from "react";
-import "../CSS/Requests.css"; 
-import NavBar from '../components/NavBar';
+import "../CSS/Requests.css";
 
 const Requests = () => {
   const [requests, setRequests] = useState([
-    { id: 1, item: "Black Wallet", claimer: "ahmed@estin.dz", phone: "0555-123-456", status: "pending" },
-    { id: 2, item: "Laptop Bag", claimer: "sara@estin.dz", phone: null, status: "accepted" },
-    { id: 3, item: "Car Keys", claimer: "fatima@estin.dz", phone: "0666-987-654", status: "pending" }
+    { id: 1, item: "Black Wallet", claimer: "ahmed@estin.dz", phone: "0555-123-456", image: null, details: "Leather wallet with a zipper.", status: "pending" },
+    { id: 2, item: "Laptop Bag", claimer: "sara@estin.dz", phone: null, image: "laptop-bag.jpg", details: "Black Dell laptop bag.", status: "pending" },
   ]);
 
-  // Handle accept action
-  const handleAccept = (id) => {
-    setRequests(requests.map(req => req.id === id ? { ...req, status: "accepted" } : req));
+  const [selectedRequest, setSelectedRequest] = useState(null);
+
+  // Open modal with selected request
+  const openModal = (request) => {
+    setSelectedRequest(request);
   };
 
-  // Handle reject action
+  // Close modal
+  const closeModal = () => {
+    setSelectedRequest(null);
+  };
+
+  // Handle accept
+  const handleAccept = (id) => {
+    setRequests(requests.map(req => req.id === id ? { ...req, status: "accepted" } : req));
+    closeModal();
+  };
+
+  // Handle reject
   const handleReject = (id) => {
     setRequests(requests.map(req => req.id === id ? { ...req, status: "rejected" } : req));
+    closeModal();
   };
 
   return (
     <div className="requests-container">
-      <NavBar/>
       <h2>My Requests</h2>
       {requests.length === 0 ? (
         <p className="empty">No requests yet.</p>
       ) : (
         <ul className="requests-list">
-          {requests.map((request, index) => (
-            <li 
-              key={request.id} 
-              className={`request-item ${request.status}`} 
-              style={{ animationDelay: `${index * 0.1}s` }} // Staggered animation
-            >
+          {requests.map((request) => (
+            <li key={request.id} className={`request-item ${request.status}`}>
               <p><strong>Item:</strong> {request.item}</p>
               <p><strong>Claimer:</strong> {request.claimer}</p>
-              {request.phone && <p className="phone"><strong>Phone:</strong> {request.phone}</p>}
+              {request.phone && <p><strong>Phone:</strong> {request.phone}</p>}
               <p className="status"><strong>Status:</strong> {request.status}</p>
-              
               {request.status === "pending" && (
-                <div className="actions">
-                  <button className="accept-btn" onClick={() => handleAccept(request.id)}>Accept</button>
-                  <button className="reject-btn" onClick={() => handleReject(request.id)}>Reject</button>
-                </div>
+                <button className="view-btn" onClick={() => openModal(request)}>View Details</button>
               )}
             </li>
           ))}
         </ul>
+      )}
+
+      {/* Modal Popup */}
+      {selectedRequest && (
+        <div className="modal-overlay">
+          <div className="modal">
+            <h3>Claim Details</h3>
+            <p><strong>Item:</strong> {selectedRequest.item}</p>
+            <p><strong>Claimer:</strong> {selectedRequest.claimer}</p>
+            {selectedRequest.phone && <p><strong>Phone:</strong> {selectedRequest.phone}</p>}
+            <p><strong>Details:</strong> {selectedRequest.details}</p>
+            {selectedRequest.image && <img src={selectedRequest.image} alt="Item" className="modal-image" />}
+            
+            <div className="modal-actions">
+              <button className="accept-btn" onClick={() => handleAccept(selectedRequest.id)}>Accept</button>
+              <button className="reject-btn" onClick={() => handleReject(selectedRequest.id)}>Reject</button>
+              <button className="close-btn" onClick={closeModal}>Close</button>
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );

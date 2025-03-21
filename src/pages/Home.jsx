@@ -1,7 +1,6 @@
 import NavBar from "../components/NavBar";
 import FilterBar from "../components/FilterBar";
 import FoundItemCard from "../components/FoundItemCard";
-import Bar from "../components/Bar";
 import '../CSS/Home.CSS'
 import {useState} from "react";
 import img1 from'../assets/picture.jpg';
@@ -21,11 +20,10 @@ const itemArray= [
 
   function Home() {
     const [selectedFilter, setSelectedFilter] = useState('all');
-    const [selectedType , setSelectedType] = useState('found');
     const [selectedItem, setSelectedItem] = useState(null);
     const [selectedContact,setSelectedContact] =useState(null);
 
-    const filteredItems = itemArray.filter((item) => (selectedFilter === 'all' || item.category === selectedFilter)&&selectedType === item.type);
+    const filteredItems = itemArray.filter((item) => (selectedFilter === 'all' || item.category === selectedFilter));
   
     document.title='home';
 
@@ -33,7 +31,6 @@ const itemArray= [
       <div>
         <div className="header">
           <NavBar />
-          <Bar setSelectedType={setSelectedType}/>
           <FilterBar setSelectedFilter={setSelectedFilter} />
         </div>
   

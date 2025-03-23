@@ -1,0 +1,29 @@
+.bar{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 40px;
+  background: #072d57;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding-left: 20px;
+}
+.bar button{
+  background: white;
+  color: #0d61bb;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.bar button:hover {
+  background: #0056b3;
+  color: white;
+  transform: scale(1.1);
+}
+
+.bar button:active {
+  transform: scale(0.95);
+}

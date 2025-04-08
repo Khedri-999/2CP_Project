@@ -4,6 +4,7 @@ import Landing from './pages/Landing';
 import Requests from './pages/Requests';
 import MyClaims from './pages/MyClaims';
 import {BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Terms from './pages/Terms'
 
 
 function App() {
@@ -11,6 +12,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Landing />} />
+        <Route path="/Terms" element={<Terms />} />
         <Route path="/home" element={<Home />} />
         <Route path="/home/Requests" element={<Requests />} />
         <Route path="/home/MyClaims" element={<MyClaims />} />

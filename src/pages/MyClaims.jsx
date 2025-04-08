@@ -6,6 +6,9 @@ const sampleClaims = [
   { id: 1, name: "Student Card", image: "../assets/card.png", place: "Library", date: "2025-03-17", status: "pending" },
   { id: 2, name: "Charger", image: "../assets/charger.png", place: "Cafeteria", date: "2025-03-16", status: "accepted", finderEmail: "johndoe@estin.dz", finderPhone: "+213 555 123 456" },
   { id: 3, name: "Glasses", image: "../assets/glasses.png", place: "Classroom", date: "2025-03-15", status: "rejected" },
+  { id: 4, name: "Student Card", image: "../assets/card.png", place: "Library", date: "2025-03-17", status: "pending" },
+  { id: 5, name: "Charger", image: "../assets/charger.png", place: "Cafeteria", date: "2025-03-16", status: "accepted", finderEmail: "johndoe@estin.dz", finderPhone: "+213 555 123 456" },
+  { id: 6, name: "Glasses", image: "../assets/glasses.png", place: "Classroom", date: "2025-03-15", status: "rejected" },
 ];
 
 function MyClaims() {

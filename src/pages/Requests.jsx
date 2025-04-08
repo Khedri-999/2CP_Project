@@ -5,6 +5,8 @@ const Requests = () => {
   const [requests, setRequests] = useState([
     { id: 1, item: "Black Wallet", claimer: "ahmed@estin.dz", phone: "0555-123-456", image: null, details: "Leather wallet with a zipper.", status: "pending" },
     { id: 2, item: "Laptop Bag", claimer: "sara@estin.dz", phone: null, image: "laptop-bag.jpg", details: "Black Dell laptop bag.", status: "pending" },
+    { id: 3, item: "Black Wallet", claimer: "ahmed@estin.dz", phone: "0555-123-456", image: null, details: "Leather wallet with a zipper.", status: "pending" },
+    { id: 4, item: "Laptop Bag", claimer: "sara@estin.dz", phone: null, image: "laptop-bag.jpg", details: "Black Dell laptop bag.", status: "pending" },
   ]);
 
   const [selectedRequest, setSelectedRequest] = useState(null);

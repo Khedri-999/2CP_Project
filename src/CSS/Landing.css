@@ -1,6 +1,9 @@
-/* Landing Page Styles */
+
+
+/*Landing Page Styles */
 html{
   scroll-behavior: smooth;
+  color:#022852;
 }
 
 * {
@@ -42,7 +45,7 @@ html{
   gap: 15px;
 }
 
-.nav-btn, .how-btn, .why-btn, .FAQ-btn, .signin-btn {
+.nav-btn, .how-btn, .why-btn, .FAQ-btn, .signin-btn ,.features-btn {
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
@@ -51,7 +54,7 @@ html{
   transition: all 0.3s ease-in-out;
 }
 
-.nav-btn:hover, .how-btn:hover, .why-btn:hover, .FAQ-btn:hover {
+.nav-btn:hover, .how-btn:hover, .why-btn:hover, .FAQ-btn:hover ,.features-btn:hover{
   background: #007bff;
   color: white;
 }
@@ -71,8 +74,15 @@ html{
   justify-content: center;
   align-items: center;
   text-align: center;
-  margin-top: 100px;
+  margin-top: 70px;
   padding: 50px;
+}
+
+.top-section{
+  height: 600px;
+  display:grid;
+  grid-template-columns:1fr 1fr ;
+  align-items: center;
 }
 
 .text-section {
@@ -90,6 +100,10 @@ html{
   margin: 15px 0;
 }
 
+.text-section .estins-logo{
+  height: 20px;
+}
+
 .cta-btn {
   background: #007bff;
   color: white;
@@ -104,7 +118,7 @@ html{
   background: #0056b3;
 }
 
-.image-section img {
+.top-section .estin-image {
   width: 400px;
   border-radius: 10px;
 }
@@ -112,13 +126,13 @@ html{
 /* Sections Styling */
 .how-toUse, .why-container, .FAQ-container {
   max-width: 1000px;
-  margin: 50px 20px;
+  margin: 70px 120px;
   text-align: center;
 }
 
 .how-steps {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr ;
   justify-content: center;
   gap: 40px;
   margin-top: 20px;
@@ -149,7 +163,48 @@ html{
 
 .why-image{
   height:90px;
+  width: 300px;
 }
+
+.features-container h1 {
+  text-align: center;
+}
+
+.features-steps {
+  display: grid;
+  grid-template-columns:1fr 1fr;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.features-title img {
+  height: 35px;
+}
+
+.features-title {
+  display: flex;
+  align-items: center;
+  text-align: left;
+  gap: 10px;
+}
+
+.features-step {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  align-items: center;
+  gap: 15px;
+}
+
+.features-img {
+  height: 100px;
+  width: 150px;
+  border-radius: 20px;
+  
+}
+
 
 .FAQ-container{
   max-width: 900px;
@@ -167,4 +222,13 @@ html{
 .FAQ-container h1 {
   font-size: 30px;
   margin-bottom: 20px;
+}
+
+footer{
+  padding: 20px;
+  background-color: #ffffff;
+  display:grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap:25px;
+  width:100%;
 }

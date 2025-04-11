@@ -40,21 +40,51 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_simplejwt',
     'login' ,
+    'rest_framework.authtoken',
+    'dj_rest_auth',
+    'dj_rest_auth.registration' ,
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google', 
+  
 ]
 
+SITE_ID = 1 
+
+
+
+REST_USE_JWT = True 
+
+ACCOUNT_SIGNUP_FIELDS = ['email*', 'password1*', 'password2*']
+ACCOUNT_SIGNUP_FIELDS = ['email*', 'password1*', 'password2*']
+ACCOUNT_LOGIN_METHODS = {'email'}
+ACCOUNT_EMAIL_VERIFICATION = "mandatory"
+
+
+
+SOCIALACCOUNT_PROVIDERS = {
+    "google": {
+        "CLIENT_ID": "86795754074-n1puig8gnf51it9sngse6c3v0gj15dm8.apps.googleusercontent.com",
+        "SECRET": "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",
+        "SCOPE": ["email", "profile"],
+        "AUTH_PARAMS": {"access_type": "online"},
+        "REDIRECT_URI": "http://localhost:8000/api/auth/google/callback/",
+    }
+}
+
+
+
+ACCOUNT_ADAPTER = 'login.adapters.MySocialAccountAdapter'
+SOCIALACCOUNT_ADAPTER = 'login.adapters.MySocialAccountAdapter'
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
+    
+        'rest_framework.authentication.TokenAuthentication',
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
-    'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated',
-    ),
 }
-
-AUTH_USER_MODEL = 'login.CustomUser' 
-
-
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -64,6 +94,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
 ]
 
 ROOT_URLCONF = 'Project_2cp.urls'
@@ -140,5 +171,32 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTHENTICATION_BACKENDS = [
-    'django.contrib.auth.backends.ModelBackend',
+    'django.contrib.auth.backends.ModelBackend', 
+    'allauth.account.auth_backends.AuthenticationBackend',
 ]
+
+from datetime import timedelta
+
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(days=1),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=7),
+    "AUTH_HEADER_TYPES": ("Bearer",),
+}
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [BASE_DIR / "templates"],  # Create a templates folder
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
+JWT_AUTH = {
+    'JWT_VERIFY_IAT': False,  # Disables checking of the 'iat' claim (Not recommended for production)
+}

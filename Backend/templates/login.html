@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google OAuth Test</title>
+</head>
+<body>
+    <h2>Step 1: Click to Authenticate with Google</h2>
+    <a href="https://accounts.google.com/o/oauth2/v2/auth?client_id=86795754074-n1puig8gnf51it9sngse6c3v0gj15dm8.apps.googleusercontent.com&redirect_uri=http://localhost:8000/api/auth/google/callback/&response_type=code&scope=openid%20email%20profile">
+        <button>Sign in with Google</button>
+    </a>
+
+    <h2>Step 2: Paste the Code Here</h2>
+    <form method="POST" action="/api/auth/google/">
+        <label for="code">Code from URL:</label><br>
+        <input type="text" name="code" id="code" required><br><br>
+        
+        <label for="redirect_uri">Redirect URI:</label><br>
+        <input type="text" name="redirect_uri" id="redirect_uri" value="http://localhost:8000/api/auth/google/callback/" required><br><br>
+        
+        <button type="submit">Send Code to Backend</button>
+    </form>
+</body>
+</html>

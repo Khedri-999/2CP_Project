@@ -1,9 +1,0 @@
-<h2>My Lost Items</h2>
-<ul>
-    {% for item in items %}
-        <li>{{ item.name }} - <a href="{% url 'edit_lost_item' item.id %}">Edit</a> |
-         <a href="{% url 'delete_lost_item' item.id %}">Delete</a></li>
-    {% empty %}
-        <li>No lost items yet.</li>
-    {% endfor %}
-</ul>

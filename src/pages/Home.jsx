@@ -4,6 +4,7 @@ import FoundItemCard from "../components/FoundItemCard";
 import '../CSS/Home.CSS'
 import {useState} from "react";
 import img1 from'../assets/picture.jpg';
+import SideBar from "../components/SideBar";
 
 
 const itemArray= [
@@ -33,6 +34,8 @@ const itemArray= [
           <NavBar />
           <FilterBar setSelectedFilter={setSelectedFilter} />
         </div>
+
+        <SideBar/>
   
         <div className="items-container">
           {filteredItems.map((item) => (

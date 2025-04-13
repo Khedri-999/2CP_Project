@@ -1,5 +1,7 @@
 import { useState } from "react";
 import "../CSS/MyClaims.css";
+import SideBar from "../components/SideBar";
+
 
 
 const sampleClaims = [
@@ -19,6 +21,8 @@ function MyClaims() {
   };
 
   return (
+    <>
+    <SideBar/>
     <div className="my-claims-container">
       <h2>My Claims</h2>
       <div className="claims-grid">
@@ -45,6 +49,7 @@ function MyClaims() {
         ))}
       </div>
     </div>
+    </>
   );
 }
 

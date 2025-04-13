@@ -1,6 +1,4 @@
 
-
-/*Landing Page Styles */
 html{
   scroll-behavior: smooth;
   color:#022852;
@@ -124,9 +122,10 @@ html{
 }
 
 /* Sections Styling */
-.how-toUse, .why-container, .FAQ-container {
+.how-toUse, .why-container, .FAQ-container ,.features-container {
   max-width: 1000px;
   margin: 70px 120px;
+  padding-top:100px;
   text-align: center;
 }
 
@@ -166,9 +165,6 @@ html{
   width: 300px;
 }
 
-.features-container h1 {
-  text-align: center;
-}
 
 .features-steps {
   display: grid;

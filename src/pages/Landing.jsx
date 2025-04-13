@@ -1,5 +1,6 @@
 import "../CSS/Landing.css";
 import { useState,useEffect } from "react";
+import { Link } from 'react-router-dom';
 import fonditLogo from '../assets/Logo_2.png';
 import step1 from '../assets/step1.png';
 import step2 from '../assets/step2.jfif';
@@ -7,11 +8,6 @@ import step3 from '../assets/step3.png';
 import step4 from '../assets/step4.png';
 import step5 from '../assets/step5.png';
 import step6 from '../assets/step6.png';
-import why1 from '../assets/why1.jfif';
-import why2 from '../assets/why2.png';
-import why3 from '../assets/why3.jfif';
-import why4 from '../assets/why4.jfif';
-import why5 from '../assets/why5.png';
 import bib from '../assets/estin-image.png';
 import estin from '../assets/estin.png';
 import features1 from '../assets/features1.png';
@@ -24,8 +20,6 @@ import email1 from '../assets/email1.png';
 import email2 from '../assets/email2.png';
 import email3 from '../assets/email3.png';
 import email4 from '../assets/email4.png';
-import email5 from '../assets/email5.png';
-import email6 from '../assets/email6.png';
 
 function LandingPage() {
   return (
@@ -48,10 +42,13 @@ function LandingPage() {
           <a href='#faq'>
           <button className="FAQ-btn">FAQ</button>
           </a>
-          <a href='#about'>          
-            <button className="nav-btn">About</button>
+          <a href='#contact-us'>          
+            <button className="nav-btn">contact-us</button>
           </a>
+          <Link to='/Auth' className='Auth-link'>
           <button className="signin-btn">Sign-In</button>
+          </Link>
+          
         </div>
       </nav>
 
@@ -69,7 +66,7 @@ function LandingPage() {
       <hr></hr>
       
       <div className="how-toUse" id='how'>
-        <h3>How To Use Our Platform</h3>
+        <h1>How To Use Our Platform</h1>
 
          <div className="how-steps">
 
@@ -242,7 +239,7 @@ function LandingPage() {
          </var>
        </div>
 
-      <footer >
+      <footer id="contact-us">
        <div >
         <img src={fonditLogo} alt="founfit-logo" className="logo"/>
         <p>2025 Foundit. All rights reserved</p>

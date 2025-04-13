@@ -1,10 +1,10 @@
 .items-container{
-  background-color: rgb(233, 233, 233);
   display:grid;
   grid-template-columns: 1fr 1fr 1fr;
   row-gap: 10px;
   column-gap: 10px;
   padding-top: 120px;
+  padding-left: 155px;
   padding-right: 3px;
 }
 

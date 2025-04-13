@@ -1,0 +1,233 @@
+/* MyPosts.css */
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+}
+
+/* Container for the entire MyPosts page */
+.my-posts-container {
+  max-width: 1200px;
+  margin-left:140px;
+  margin-top: 100px;
+  padding: 0 20px;
+}
+
+/* Heading */
+.my-posts-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Grid container for posts */
+.posts-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+/* Individual post card */
+.post-card {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  width: 280px;
+  padding: 15px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.2s ease;
+}
+
+.post-card:hover {
+  transform: translateY(-5px);
+}
+
+.post-image {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.post-card h3 {
+  margin: 10px 0 5px;
+  color: #555;
+  font-size: 1.2em;
+  text-align: center;
+}
+
+.post-card p {
+  color: #777;
+  font-size: 0.9em;
+  text-align: center;
+  margin: 5px 0;
+}
+
+.post-date {
+  font-style: italic;
+  font-size: 0.8em;
+}
+
+/* Button to view claims */
+.claims-btn {
+  background: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  margin-top: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  font-size: 0.9em;
+  transition: background 0.3s ease;
+}
+
+.claims-btn:hover {
+  background: #0056b3;
+}
+
+
+/* Modal Container (Centered Popup) */
+.modal-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Modal Box */
+.modal {
+  background: #fff;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 500px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  animation: slideDown 0.3s ease-in-out;
+  
+  /* Center all content */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* Modal Heading (Centered) */
+.modal h3 {
+  font-size: 1.5em;
+  color: #333;
+  margin-bottom: 15px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Claim List - Properly Aligned */
+.claim-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Space between claims */
+  max-height: 300px;
+  width: 100%;
+  padding: 10px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #ccc #f9f9f9;
+  align-items: center;
+}
+
+/* Individual Claim Item */
+.claim-item {
+  background: #f9f9f9;
+  width: 90%;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: background 0.3s ease;
+}
+
+.claim-item:hover {
+  background: #e0e0ff;
+}
+
+/* Claim Text */
+.claim-item p {
+  margin: 5px 0;
+  font-size: 0.9em;
+  color: #555;
+}
+
+/* Select Claim Button */
+.select-claim-btn {
+  background: #28a745;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9em;
+  transition: background 0.3s ease;
+  margin-top: 10px;
+  width: 100%;
+  text-align: center;
+}
+
+.select-claim-btn:hover {
+  background: #1e7e34;
+}
+
+/* Close Modal Button (Now Centered) */
+.close-modal-btn {
+  background: #dc3545;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1.1em;
+  text-align: center;
+  transition: background 0.3s ease;
+  
+  /* Centered below the claims */
+  margin-top: 20px;
+  width: 50%;
+}
+
+.close-modal-btn:hover {
+  background: #c82333;
+}
+
+/* Smooth Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-20px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}

@@ -1,10 +1,72 @@
-.terms-container{
-  background-image: URL(../assets/terms.jfif);
-  background-position:center;
-  background-repeat:no-repeat;
-  background-size:cover;
-  background-attachment:fixed;
+/* Terms.css */
+.terms-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f4f4f4;
+  padding: 20px;
 }
-.terms{
-  background-color: aliceblue;
+
+.terms {
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  width: 100%;
+  text-align: left;
+  font-family: 'Arial', sans-serif;
+}
+
+.terms h1 {
+  font-size: 28px;
+  color: #004aad;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.terms h2 {
+  font-size: 22px;
+  color: #222;
+  margin-top: 20px;
+  border-bottom: 2px solid #004aad;
+  padding-bottom: 5px;
+}
+
+.terms p {
+  font-size: 16px;
+  color: #333;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+.terms ul {
+  padding-left: 20px;
+}
+
+.terms ul li {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 8px;
+  list-style-type: disc;
+}
+
+@media (max-width: 768px) {
+  .terms {
+      padding: 20px;
+  }
+
+  .terms h1 {
+      font-size: 24px;
+  }
+
+  .terms h2 {
+      font-size: 20px;
+  }
+
+  .terms p, 
+  .terms ul li {
+      font-size: 14px;
+  }
 }

@@ -20,6 +20,7 @@ import email1 from '../assets/email1.png';
 import email2 from '../assets/email2.png';
 import email3 from '../assets/email3.png';
 import email4 from '../assets/email4.png';
+import estin1 from '../assets/estin-landing1.png';
 
 function LandingPage() {
   return (
@@ -59,7 +60,7 @@ function LandingPage() {
           <p>Dedicated For Reporting and Recovering Lost and Found Items In Amizour Campus, Helping <img src={estin} alt="estins" className="estins-logo"/> Students Reconnect With What Matters The Most.</p>
           <button className="cta-btn">Get Started</button>
         </div>
-        <img src={bib} alt="estin" className="estin-image"/>
+        <img src={estin1} alt="estin" className="estin-image" loading="lazy"/>
        </div>
       </div>
 

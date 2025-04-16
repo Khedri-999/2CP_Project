@@ -78,6 +78,7 @@
   gap: 8px; /* Reduce space between logo and text */
   width: 30%; /* Reduce width */
   padding: 8px 12px; /* Smaller padding */
+  margin-bottom: 10px;
   font-size: 14px; /* Reduce text size */
   background: white;
   color: black;

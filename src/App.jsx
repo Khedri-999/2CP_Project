@@ -6,11 +6,13 @@ import Terms from './pages/Terms';
 import Requests from './pages/Requests';
 import MyClaims from './pages/MyClaims';
 import MyPosts from './pages/MyPosts';
+import Report from './pages/Report';
 import {BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 
 function App() {
   return (
+    
     <Router>
       <Routes>
         <Route path="/" element={<Landing />} />
@@ -20,6 +22,7 @@ function App() {
         <Route path="/home/MyPosts" element={<MyPosts />} />
         <Route path="/home/Requests" element={<Requests />} />
         <Route path="/home/MyClaims" element={<MyClaims />} />
+        <Route path="/home/Report" element={<Report />} />
       </Routes>
     </Router>
   );

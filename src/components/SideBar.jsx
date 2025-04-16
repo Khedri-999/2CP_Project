@@ -21,7 +21,7 @@ function SideBar(){
           <button className='sidebar-link'>requests</button>
         </Link>
         
-        <Link to='/report' className='report-link'>
+        <Link to='/Home/Report' className='report-link'>
           <button className='sidebar-link'>report</button>
         </Link>
         

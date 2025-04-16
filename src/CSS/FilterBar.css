@@ -1,13 +1,15 @@
 .filter-container {
   display: flex;
-  justify-content: center;
+  justify-content:left;
+  position: fixed;
+  width:95%;
+  top:56px;
+  left:138px;
   gap: 10px;
   padding: 5px;
   border-style:solid;
   border-width: 4px;
   border-color: black;
-  border-left: none;
-  border-right: none;
   background-color: rgb(255, 255, 255);
 }
 

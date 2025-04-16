@@ -1,0 +1,41 @@
+<!-- your_app/templates/google_callback.html -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Google OAuth2 Callback</title>
+</head>
+<body>
+  <h2>Signing you in...</h2>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const code = params.get("code");
+
+    if (code) {
+      fetch("/api/auth/google/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          code: code,
+          redirect_uri: "http://localhost:8000/api/auth/google/callback/",
+        }),
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log("Login response:", data);
+        if (data.access_token) {
+          localStorage.setItem("access_token", data.access_token);
+        }
+        window.location.href = "/api/";
+      })
+      .catch(error => {
+        console.error("Error during login:", error);
+        alert("Login failed. Check console.");
+      });
+    } else {
+      alert("No code found in URL.");
+    }
+  </script>
+</body>
+</html>

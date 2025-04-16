@@ -53,7 +53,6 @@ h2 {
   transform: scale(1.03);
 }
 
-/* 🟡 Status Colors */
 .request-item.pending {
   border-left: 6px solid orange;
   transition: border-color 0.3s ease-in-out;
@@ -81,7 +80,6 @@ h2 {
   color: #28a745;
 }
 
-/* ✅ Buttons */
 .actions {
   margin-top: 10px;
   display: flex;
@@ -115,7 +113,6 @@ h2 {
 .reject-btn:hover {
   background: darkred;
 }
-/* Modal Styling */
 .modal-overlay {
   position: fixed;
   top: 0;

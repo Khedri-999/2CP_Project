@@ -17,12 +17,15 @@ export default function Auth() {
 
 
         </h2>
-        <p className="auth-text">Connect With Your Google Account to Continue</p>
+        
 
-        {/* Google Sign-In Button */}
+        {/* 
+        <p className="auth-text">Connect With Your Google Account to Continue</p>
+        
+        Google Sign-In Button */}
         <button className="google-signin-btn" onClick={handleGoogleSignIn}>
           <svg
-            xmlns="http://www.w3.org/2000/svg"
+            xmlns="https://accounts.google.com/o/oauth2/v2/auth?client_id=86795754074-n1puig8gnf51it9sngse6c3v0gj15dm8.apps.googleusercontent.com&redirect_uri=http://localhost:8000/api/auth/google/callback/&response_type=code&scope=openid%20email%20profile"
             preserveAspectRatio="xMidYMid"
             viewBox="0 0 256 262"
             className="google-icon"

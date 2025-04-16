@@ -1,5 +1,5 @@
 
-import '../CSS/NavBar.css'
+import '../CSS/NavBar.css';
 import founditLogo from '../assets/Logo_2.png';
 
 function NavBar(){
@@ -10,6 +10,7 @@ function NavBar(){
           <img src={founditLogo} alt='estin logo'
           className='estin-logo'/>
         </div>
+    
       </nav>
   )
 }

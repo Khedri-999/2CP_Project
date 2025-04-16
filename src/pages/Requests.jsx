@@ -11,23 +11,20 @@ const Requests = () => {
 
   const [selectedRequest, setSelectedRequest] = useState(null);
 
-  // Open modal with selected request
   const openModal = (request) => {
     setSelectedRequest(request);
   };
 
-  // Close modal
   const closeModal = () => {
     setSelectedRequest(null);
   };
 
-  // Handle accept
   const handleAccept = (id) => {
     setRequests(requests.map(req => req.id === id ? { ...req, status: "accepted" } : req));
     closeModal();
   };
 
-  // Handle reject
+  
   const handleReject = (id) => {
     setRequests(requests.map(req => req.id === id ? { ...req, status: "rejected" } : req));
     closeModal();

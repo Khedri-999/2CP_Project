@@ -1,28 +1,28 @@
-/* MyPosts.css */
-
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
-  margin: 0;
-  padding: 0;
+.header{
+  position: fixed;
+  display: block;
+  margin-top: -10px;
+  margin-left: -7px;
+  margin-right: 0px;
+  width:100%;
+  background-color: white;
+  z-index: 100;
 }
 
-/* Container for the entire MyPosts page */
+
+
 .my-posts-container {
   max-width: 1200px;
   margin-left:140px;
-  margin-top: 100px;
-  padding: 0 20px;
+  padding-top:100px;
 }
 
-/* Heading */
 .my-posts-container h2 {
   text-align: center;
   margin-bottom: 20px;
   color: #333;
 }
 
-/* Grid container for posts */
 .posts-grid {
   display: flex;
   flex-wrap: wrap;
@@ -30,7 +30,6 @@ body {
   justify-content: center;
 }
 
-/* Individual post card */
 .post-card {
   background: #fff;
   border: 1px solid #ddd;
@@ -74,7 +73,6 @@ body {
   font-size: 0.8em;
 }
 
-/* Button to view claims */
 .claims-btn {
   background: #007bff;
   color: #fff;
@@ -93,8 +91,7 @@ body {
 }
 
 
-/* Modal Container (Centered Popup) */
-.modal-container {
+.modal1-container {
   position: fixed;
   top: 0;
   left: 0;
@@ -108,47 +105,42 @@ body {
   animation: fadeIn 0.3s ease-in-out;
 }
 
-/* Modal Box */
-.modal {
+.modal1 {
   background: #fff;
   border-radius: 10px;
   width: 90%;
   max-width: 500px;
+  max-height: 610px;
   padding: 20px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
   animation: slideDown 0.3s ease-in-out;
-  
-  /* Center all content */
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
 }
 
-/* Modal Heading (Centered) */
-.modal h3 {
-  font-size: 1.5em;
+.modal1 h3 {
+  font-size: 20px;
   color: #333;
   margin-bottom: 15px;
   width: 100%;
   text-align: center;
 }
 
-/* Claim List - Properly Aligned */
 .claim-list {
   display: flex;
   flex-direction: column;
-  gap: 15px; /* Space between claims */
-  max-height: 300px;
-  width: 100%;
-  padding: 10px;
+  gap: 10px; 
+  max-height: 500px;
+  width: 500px;
   overflow-y: auto;
+  padding: 10px;
   scrollbar-width: thin;
   scrollbar-color: #ccc #f9f9f9;
   align-items: center;
 }
 
-/* Individual Claim Item */
 .claim-item {
   background: #f9f9f9;
   width: 90%;
@@ -166,14 +158,12 @@ body {
   background: #e0e0ff;
 }
 
-/* Claim Text */
 .claim-item p {
   margin: 5px 0;
   font-size: 0.9em;
   color: #555;
 }
 
-/* Select Claim Button */
 .select-claim-btn {
   background: #28a745;
   color: white;
@@ -192,7 +182,6 @@ body {
   background: #1e7e34;
 }
 
-/* Close Modal Button (Now Centered) */
 .close-modal-btn {
   background: #dc3545;
   color: white;
@@ -204,16 +193,14 @@ body {
   text-align: center;
   transition: background 0.3s ease;
   
-  /* Centered below the claims */
   margin-top: 20px;
   width: 50%;
 }
 
-.close-modal-btn:hover {
+.close-modal1-btn:hover {
   background: #c82333;
 }
 
-/* Smooth Animations */
 @keyframes fadeIn {
   from {
     opacity: 0;

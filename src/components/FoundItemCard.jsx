@@ -3,8 +3,7 @@ import img2 from'../assets/download1.png';
 import '../CSS/FoundItemCard.css';
 
 function FoundItemCard({item , onDetailClick ,onContactClick}){
-
-
+  
  return(
   <div className='item-card'>
     <div className='image-container'>

@@ -12,11 +12,13 @@ function Home() {
   const [selectedFilter, setSelectedFilter] = useState('all');
   const [selectedItem, setSelectedItem] = useState(null);
   const [selectedContact, setSelectedContact] = useState(null);
+  const [image, setImage] = useState(null);
+  
 
   useEffect(() => {
     axios.get('https://67fd5ab53da09811b1758011.mockapi.io/api/post')
       .then(res => {
-        console.log('API Data:', res.data); // <-- Add this
+        console.log('API Data:', res.data); 
         setItems(res.data);
       })
       .catch(err => console.log(err));
@@ -46,6 +48,14 @@ useEffect(() => {
 
   document.title = 'home';
 
+  const handleImageUpload = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setImage(URL.createObjectURL(file));
+    }
+  };
+
+
   return (
     <div>
       <div className="header">
@@ -71,14 +81,14 @@ useEffect(() => {
         <div className="modal-container">
           <div className="modal">
             <div className="modal-image-container">
-              <img src={img1} alt="item" className="modal-image" />
+              <img src={selectedItem.image} alt="item" className="modal-image" />
             </div>
             <div className="modal-details-container">
               <h3>{selectedItem.name}</h3>
               <p>Found at: {selectedItem.place}</p>
               <p>Time: {selectedItem.time}</p>
               <p>Description: {selectedItem.discription}</p>
-              <button className="close-btn" onClick={() => setSelectedItem(null)}>Close</button>
+              <button className="close-btn" onClick={() => setSelectedItem(null)}>X</button>
             </div>
           </div>
         </div>
@@ -97,7 +107,9 @@ useEffect(() => {
             <p>Give some details to prove the ownership:</p>
             <input type="text" className="form-text" required />
             <br />
-            <input type="file" />
+            <label>Upload Image:</label>
+            <input type="file" accept="image/*" onChange={handleImageUpload} />
+            {image && <img src={image} alt="Preview" className="preview-image" />}
             <br />
             <div className="buttons">
               <button className="close-btn" onClick={() => setSelectedContact(null)}>Close</button>

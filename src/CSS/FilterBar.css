@@ -1,32 +1,52 @@
+
 .filter-container {
   display: flex;
-  justify-content:left;
+  justify-content: center;
   position: fixed;
-  width:95%;
-  top:56px;
-  left:138px;
+  width: 95%;
+  top: 56px;
+  left: 138px;
   gap: 10px;
-  padding: 5px;
-  border-style:solid;
-  border-width: 4px;
-  border-color: black;
-  background-color: rgb(255, 255, 255);
+  padding: 20px 5px 5px 15px;
+  background-color: var(--bg-color, #ffffff);
+  z-index: 99;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  transition: all 0.3s ease;
 }
 
 .filter-container button {
   padding: 8px 15px;
   border: none;
   cursor: pointer;
-  background-color: lightgray;
-  border-radius: 5px;
-  transition:all 0.3s ease;
+  background-color: var(--button-bg, #efedf2);
+  border-radius: 20px;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: var(--button-text, #333);
 }
 
-.filter-container button:hover{
-  background-color: #007bff;
+.filter-container button:hover {
+  background-color: var(--button-hover, #18018e);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 123, 255, 0.2);
 }
 
 .filter-container button.active {
-  background-color: #007bff;
+  background-color: var(--button-active, #18018e);
   color: white;
+  font-weight: 600;
+  box-shadow: 0 2px 5px rgba(0, 123, 255, 0.3);
+}
+
+
+body.dark-mode .filter-container {
+  --bg-color: #1e1e1e;
+  --border-color: #444;
+  --button-bg: #333;
+  --button-text: #eee;
+  --button-hover: #0056b3;
+  --button-active: #0056b3;
 }

@@ -7,14 +7,14 @@ function FoundItemCard({item , onDetailClick ,onContactClick}){
  return(
   <div className='item-card'>
     <div className='image-container'>
-      <img src={img1} alt="item-image" className='item-image'/>
+      <img src={item.image} alt="item-image" className='item-image'/>
     </div>
     <div className='item-details'>
       <h3>{item.name}</h3>
       <p>found at : {item.place}</p>
       <p> time : {item.time}</p>
         <div className="buttons">
-          <button className='contact-btn' onClick={onContactClick}>contact</button>
+          <button className='contact-btn' onClick={onContactClick}>claim</button>
           <button className='details-btn' onClick={onDetailClick}>details</button>
           {item.isClaimed && 
           <div className='item-claimed'>

@@ -246,7 +246,7 @@ function LandingPage() {
         <p>2025 Foundit. All rights reserved</p>
        </div>
        <div>
-        <p>Contact us</p>
+        <h4>Contact us</h4>
         <p>+213 5 52 95 23 03</p>
         <p>foundit2025@protonmail.com</p>
         <p>Location:Estin,national road N75 ,amizour ,Bejaia,alger
@@ -258,7 +258,7 @@ function LandingPage() {
         <p>about us</p>
        </div>
        <div>
-        <p>Follow us</p>
+        <h4>Follow us</h4>
        </div>
       </footer>
 

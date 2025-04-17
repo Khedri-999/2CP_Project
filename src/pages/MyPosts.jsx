@@ -10,7 +10,7 @@ const samplePosts = [
     id: 1,
     title: "Student Card Found",
     description: "I found a student card in the library.",
-    image: "../assets/download1.png",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSr5jozk_ak5Xzj25Nr5Uwric1s6TRvwlfUew&s",
     date: "2025-03-18",
     claimRequests: [
       { id: 101, requester: "userA", message: "Is this my card?", contact: "+213555111222" },
@@ -21,7 +21,7 @@ const samplePosts = [
     id: 2,
     title: "Charger Found",
     description: "A charger was left in the cafeteria.",
-    image: "../assets/download1.png",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSr5jozk_ak5Xzj25Nr5Uwric1s6TRvwlfUew&s",
     date: "2025-03-17",
     claimRequests: [
       { id: 103, requester: "userC", message: "I really need my charger back", contact: "+213555555666" }
@@ -31,10 +31,10 @@ const samplePosts = [
     id: 3,
     title: "Student Card Found",
     description: "I found a student card in the library.",
-    image: "../assets/download1.png",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSr5jozk_ak5Xzj25Nr5Uwric1s6TRvwlfUew&s",
     date: "2025-03-18",
     claimRequests: [
-      { id: 101, requester: "userA", message: "Is this my card?", contact: "+213555111222" },
+      { id: 101,image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSr5jozk_ak5Xzj25Nr5Uwric1s6TRvwlfUew&s", requester: "userA", message: "it my phone ,it is cracked ", contact: "+213555111222" },
       { id: 102, requester: "userB", message: "I lost my card, please help.", contact: "+213555333444" },
       { id: 105, requester: "userA", message: "Is this my card?", contact: "+213555111222" },
       { id: 106, requester: "userB", message: "I lost my card, please help.", contact: "+213555333444" }
@@ -44,7 +44,7 @@ const samplePosts = [
     id: 4,
     title: "Charger Found",
     description: "A charger was left in the cafeteria.",
-    image: "../assets/download1.png",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSr5jozk_ak5Xzj25Nr5Uwric1s6TRvwlfUew&s",
     date: "2025-03-17",
     claimRequests: [
       { id: 103, requester: "userC", message: "I really need my charger back", contact: "+213555555666" }
@@ -99,9 +99,14 @@ function MyPosts() {
             {activePost.claimRequests && activePost.claimRequests.length > 0 ? (
               activePost.claimRequests.map(claim => (
                 <div key={claim.id} className="claim-item">
-                  <p><strong>User: </strong>{claim.requester}</p>
-                  <p><strong>Message: </strong>{claim.message}</p>
-                  <p><strong>Contact: </strong>{claim.contact}</p>
+                  <div className="claim-image">
+                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXxn1cJViyxDRkaKaEC5JT9J3TVYNUIS_XcA&s"/>
+                  <div className="claim-details">
+                    <p><strong>User: </strong>{claim.requester}</p>
+                    <p><strong>Message: </strong>{claim.message}</p>
+                    <p><strong>Contact: </strong>{claim.contact}</p>
+                  </div>
+                  </div>
                   <button 
                     className="select-claim-btn"
                     onClick={() => handleSelectClaim(activePost.id, claim.id)}>

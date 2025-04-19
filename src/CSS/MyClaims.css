@@ -22,7 +22,7 @@
 
 .my-claims-container h2 {
   text-align: center;
-  color: var(--primary-color, #007bff);
+  color: var(--primary-color, #022852);
   font-size: 2rem;
   margin-bottom: 30px;
   position: relative;
@@ -33,7 +33,7 @@
   display: block;
   width: 80px;
   height: 4px;
-  background: var(--primary-color, #007bff);
+  background: var(--primary-color, #022852);
   margin: 15px auto 0;
   border-radius: 2px;
 }
@@ -208,7 +208,7 @@ body.dark-mode .empty-state h3 {
   align-items: center;
   gap: 8px;
   padding: 7px 15px;
-  background-color: var(--button-primary, #2a0a9e);
+  background-color: var(--button-primary, #022852);
   color: white;
   border: none;
   border-radius: 20px;
@@ -218,7 +218,7 @@ body.dark-mode .empty-state h3 {
 }
 
 .item-card .contact-btn:hover {
-  background-color: var(--button-hover, #3410eb);
+  background-color: var(--button-hover, #022852);
   transform: scale(1.05);
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }

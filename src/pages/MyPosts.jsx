@@ -1,11 +1,12 @@
-import { useState } from "react";
+import { useState ,useEffect} from "react";
 import "../CSS/MyPosts.css"; 
 import SideBar from "../components/SideBar";
 import NavBar from "../components/NavBar";
 import axios from 'axios';
 
 
-const samplePosts = [
+/*
+ [
   {
     id: 1,
     title: "Student Card Found",
@@ -52,16 +53,45 @@ const samplePosts = [
   },
  
 ];
+*/
+
+
+
+//const samplePosts =
 
 function MyPosts() {
-  const [posts, setPosts] = useState(samplePosts);
+  const [posts, setPosts] = useState([]);
 
   const [activePost, setActivePost] = useState(null);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [postsRes, claimsRes] = await Promise.all([
+          axios.get("https://67fd5ab53da09811b1758011.mockapi.io/api/myposts"),
+          axios.get("https://67fd5ab53da09811b1758011.mockapi.io/api/claims"),
+        ]);
+  
+        const postsData = postsRes.data;
+        const claimsData = claimsRes.data;
+  
+        const postsWithClaims = postsData.map(post => ({
+          ...post,
+          claimRequests: claimsData.filter(claim => claim.mypostId === post.id),
+        }));
+  
+        setPosts(postsWithClaims);
+      } catch (err) {
+        console.error("Failed to fetch data:", err);
+      }
+    };
+  
+    fetchData();
+  }, []);
+  
+
   const handleSelectClaim = (postId, claimId) => {
     console.log(`Post ${postId}: Claim ${claimId} selected.`);
-
-    setPosts(posts.filter(post => post.id !== postId));
     setActivePost(null);
   };
 

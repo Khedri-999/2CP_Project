@@ -73,7 +73,7 @@
 .item-card .contact-btn,
 .item-card .details-btn {
   padding: 7px 15px;
-  background-color: var(--button-primary, #2a0a9e);
+  background-color: var(--button-primary, #022852);
   color: white;
   border: none;
   border-radius: 20px;
@@ -84,7 +84,7 @@
 
 .item-card .contact-btn:hover,
 .item-card .details-btn:hover {
-  background-color: var(--button-hover, #3410eb);
+  background-color: var(--button-hover, #022852);
   transform: scale(1.05);
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
@@ -102,7 +102,7 @@ body.dark-mode .item-card {
   --image-bg: #2b2b2b;
   --text-primary: #f0f0f0;
   --text-secondary: #aaa;
-  --button-primary: #2a0a9e;
+  --button-primary: #022852;
   --button-hover: #3410eb;
   --claimed-color: #4caf50;
 }

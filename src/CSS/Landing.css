@@ -1,5 +1,5 @@
 :root {
-  --primary-color: #007bff;
+  --primary-color: #032e5f;
   --secondary-color: #6c757d;
   --danger-color: #dc3545;
   --light-color: #f8f9fa;
@@ -95,31 +95,42 @@ html {
   justify-content: center;
   align-items: center;
   text-align: center;
-  margin-top: 80px;
-  padding: 50px 20px;
+  margin-top: 30px;
+  padding: 50px 0px;
   width: 100%;
 }
+/*ubenqi2kqbhebdwhkkdbwndiuwehd  iedbndiewu jnusbdyc teh si s not the favethe */
 
 .top-section {
   height: auto;
-  min-height: 600px;
+  width:100vw;
+  min-height: 500px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;
   gap: 40px;
-  max-width: 1200px;
-  margin: 0 auto;
+  margin: 0px;
+  background-image: url('../assets/estin-landing1.png');
+  background-size: cover;      
+  background-position: center;  
+  background-repeat: no-repeat;
 }
 
 .text-section {
   max-width: 600px;
   text-align: left;
+  width:100%;
+  height:100%;
+  background:linear-gradient(to bottom, var(--gradient-top,rgba(245, 247, 250, 0.64)), var(--gradient-bottom, #c3cfe2));
+  padding:50px 40px;
+  clip-path: polygon(0 0, 100% 0, 85% 100%, 0% 100%);
 }
 
 .text-section h1 {
   font-size: 3rem;
   font-weight: 700;
   margin-bottom: 20px;
+  padding-right:10px;
   line-height: 1.2;
   color: var(--text-primary, #022852);
 }
@@ -138,7 +149,7 @@ html {
 }
 
 .cta-btn {
-  background: var(--primary-color);
+  background: var(--danger-color);
   color: white;
   padding: 12px 30px;
   border-radius: 30px;
@@ -147,13 +158,13 @@ html {
   transition: all 0.3s ease;
   border: none;
   font-weight: 500;
-  box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
+  box-shadow: 0 10px 10px rgba(246, 152, 152, 0.176);
 }
 
 .cta-btn:hover {
-  background: #0056b3;
+  background: #fb2c2c;
   transform: translateY(-3px);
-  box-shadow: 0 6px 15px rgba(0, 123, 255, 0.4);
+  box-shadow: 0 6px 15px rgba(182, 1, 1, 0.4);
 }
 
 .top-section .estin-image {
@@ -313,7 +324,6 @@ html {
 
 .FAQ-container .faq-box {
   background: var(--faq-bg, #ffffff);
-  padding: 25px;
   border-radius: 10px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
   margin: 20px 0;
@@ -337,33 +347,88 @@ html {
   color: var(--text-secondary, #4a5568);
 }
 
+.faq-toggle {
+  all: unset;
+  cursor: pointer;
+  font-size: 1.3rem;
+  color: var(--text-primary, #022852);
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding:20px;
+  font-weight: bold;
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.6s ease, opacity 0.3s ease;
+  opacity: 0;
+}
+
+.faq-answer.show {
+  max-height: 500px; 
+  opacity: 1;
+  padding:20px;
+  padding-top:0;
+}
+
+
 footer {
-  padding: 40px 20px;
+  padding: 30px 20px;
   background-color: var(--footer-bg, #ffffff);
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 30px;
   width: 100%;
   margin-top: 80px;
+  border-top: 1px solid #ccc;
 }
 
-footer h3 {
+.footer-section {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.footer-section h4 {
   font-size: 1.2rem;
-  margin-bottom: 15px;
   color: var(--text-primary, #022852);
+  margin-bottom: 15px;
 }
 
-footer p, footer a {
+footer p,
+footer a {
   color: var(--text-secondary, #4a5568);
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   font-size: 0.95rem;
   transition: color 0.3s ease;
 }
 
 footer a:hover {
-  color: var(--primary-color);
-  text-decoration: none;
+  color: var(--primary-color, #007bff);
+  text-decoration: underline;
 }
+
+.logo {
+  width: 120px;
+  margin-bottom: 10px;
+}
+
+.social-icons {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+  font-size: 1.2rem;
+  color: var(--text-secondary, #4a5568);
+  transition: color 0.3s ease;
+}
+
+.social-icon {
+  width:30px;
+  height:30px;
+}
+
 
 body.dark-mode {
   --gradient-top: #1a1a1a;

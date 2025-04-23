@@ -13,7 +13,7 @@ function Home() {
   const [selectedItem, setSelectedItem] = useState(null);
   const [selectedContact, setSelectedContact] = useState(null);
   const [image, setImage] = useState(null);
-  
+  const [selectedSide,setSelectedSide] = useState('Home');
 
   useEffect(() => {
     axios.get('https://67fd5ab53da09811b1758011.mockapi.io/api/post')
@@ -63,7 +63,7 @@ useEffect(() => {
         <FilterBar setSelectedFilter={setSelectedFilter} />
       </div>
 
-      <SideBar />
+      <SideBar selectedSide="Home"/>
 
       <div className="items-container">
         {filteredItems.map((item) => (

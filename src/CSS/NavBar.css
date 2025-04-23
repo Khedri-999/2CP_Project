@@ -43,8 +43,9 @@
 }
 
 .navigationBar .estin-logo {
-  width: 9rem;
+  width: 11rem;
   transition: transform 0.3s ease;
+  margin-left:-15px;
 }
 
 .navigationBar .estin-logo:hover {

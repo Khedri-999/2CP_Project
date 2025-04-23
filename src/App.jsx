@@ -7,6 +7,7 @@ import Requests from './pages/Requests';
 import MyClaims from './pages/MyClaims';
 import MyPosts from './pages/MyPosts';
 import Report from './pages/Report';
+import Profile from './pages/Profile';
 import {BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 
@@ -20,7 +21,7 @@ function App() {
         <Route path="/Auth/Terms" element={<Terms />} />
         <Route path="/home" element={<Home />} />
         <Route path="/home/MyPosts" element={<MyPosts />} />
-        <Route path="/home/Requests" element={<Requests />} />
+        <Route path="/home/Profile" element={<Profile />} />
         <Route path="/home/MyClaims" element={<MyClaims />} />
         <Route path="/home/Report" element={<Report />} />
       </Routes>

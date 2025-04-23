@@ -44,8 +44,10 @@ html {
 }
 
 .logo {
-  width: 150px;
+  width: 140px;
   transition: transform 0.3s ease;
+  cursor: pointer;
+  padding-left: 0px;
 }
 
 .logo:hover {
@@ -410,10 +412,6 @@ footer a:hover {
   text-decoration: underline;
 }
 
-.logo {
-  width: 120px;
-  margin-bottom: 10px;
-}
 
 .social-icons {
   display: flex;

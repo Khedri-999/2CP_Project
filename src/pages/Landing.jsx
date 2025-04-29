@@ -33,6 +33,7 @@ import about2 from '../assets/Light Mode/Home/About/instagram 2.png';
 import about3 from '../assets/Light Mode/Home/About/linkedin 2.png';
 import about4 from '../assets/Light Mode/Home/About/twitter2.png';
 
+
 function LandingPage() {
   return (
     <div className="landing-container">

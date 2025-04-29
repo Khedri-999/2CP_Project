@@ -37,7 +37,7 @@
   background-color: var(--link-hover, #18018e);
   color: white;
   cursor: pointer;
-  transform: translateX(5px);
+  transform: translateX(2px);
   box-shadow: 2px 0 10px rgba(38, 12, 154, 0.3);
 }
 
@@ -48,7 +48,7 @@
 }
 
 .sidebar img {
-  margin: 0 10px 0 15px;
+  margin: 0 20px 0 10px;
   filter: brightness(0) invert(0.6);
   transition: all 0.3s ease;
   height: 30px;

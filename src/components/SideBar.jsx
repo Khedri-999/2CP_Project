@@ -48,25 +48,26 @@ function SideBar(selectedSide) {
                 </button>
             </Link>
             
-            <Link to='/Home/Profile' className='Profile-link'> 
-                <button  
-                    onClick={() => handleSide('Profile')}
-                    className={side === 'Profile' ? 'active' : ''}
-                >
-                    <img src={side4} alt="Profile" />
-                    Profile
-                </button>
-            </Link>
-            
             <Link to='/Home/Report' className='report-link'>         
                 <button 
                     onClick={() => handleSide('Report')}
                     className={side === 'Report' ? 'active' : ''}
                 >
-                    <img src={side5} alt="Report" />
+                    <img src={side4} alt="Report" />
                     Report
                 </button>
             </Link>
+            
+            <Link to='/Home/Profile' className='Profile-link'> 
+                <button  
+                    onClick={() => handleSide('Profile')}
+                    className={side === 'Profile' ? 'active' : ''}
+                >
+                    <img src={side5} alt="Profile" />
+                    Profile
+                </button>
+            </Link>
+        
             
             <Link to='/' className='log-out-link'>         
                 <button 

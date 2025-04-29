@@ -1,8 +1,21 @@
 .my-posts-container {
   max-width: 1400px;
   margin-left: 170px;
+  height:100vh;
   padding: 100px 20px 40px;
   background-color: var(--bg-color, #f4f4f4);
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .my-posts-container h2 {
@@ -89,12 +102,19 @@
   margin-top: 5px;
 }
 
+.buttons-container {
+  display: flex;
+  justify-content: space-between;
+  width:100%;
+  margin-top: auto;
+}
+
 .claims-btn {
   background: var(--primary-color, #022852);
   color: #fff;
   border: none;
-  padding: 10px 20px;
-  margin-top: 15px;
+  padding: 5px 10px;
+  margin:10px 10px 0 10px;
   border-radius: 30px;
   cursor: pointer;
   width: 100%;
@@ -111,6 +131,25 @@
   background: var(--primary-hover, #0056b3);
   transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
+}
+
+.delete-btn {
+  background: var(--danger-color, #dc3545);
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  margin:10px 10px 0 10px;
+  border-radius: 30px;
+  cursor: pointer;
+  width: 100%;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+.delete-btn:hover {
+  background: var(--danger-hover, #c82333);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(220, 53, 69, 0.3);
 }
 
 .claims-count {
@@ -141,7 +180,7 @@
   align-items: center;
   z-index: 1000;
   backdrop-filter: blur(5px);
-  animation: fadeIn 0.3s ease-in-out;
+  animation: fadeIn 0.7s ease-in-out;
 }
 
 @keyframes fadeIn {
@@ -157,9 +196,9 @@
   background: var(--modal-bg, #fff);
   border-radius: 15px;
   width: 90%;
-  max-width: 600px;
+  max-width: 800px;
   max-height: 80vh;
-  padding: 30px;
+  padding: 25px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
   animation: slideUp 0.3s ease-in-out;
   display: flex;
@@ -182,7 +221,7 @@
   margin-bottom: 20px;
   text-align: center;
   padding-bottom: 15px;
-  border-bottom: 1px solid var(--border-color, #eee);
+  border-bottom: 2px solid var(--border-color, #eee);
 }
 
 .claim-list {
@@ -213,27 +252,36 @@
   transform: translateX(5px);
 }
 
-.claim-item img{
-  width: 100%;
-  height: auto;
-  border-radius: 8px; 
+.claim-details-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
 }
-.claim-item p {
-  margin: 5px 0;
+
+.claim-details-container .claim-image{
+  width:auto;
+  height: 140px;
+  max-width: 250px;
+  border-radius: 8px; 
+  padding: 2px;
+}
+
+.claim-details-container .image-claim{
+  height:100%;
+  width:100%;
+}
+
+.claim-details-container .claim-details{
+  margin: 15px 10px;
   font-size: 0.95rem;
   color: var(--text-primary, #333);
   text-align: left;
 }
 
-.claim-item .claim-date {
-  font-size: 0.8rem;
-  color: var(--text-muted, #777);
-}
-
-.claim-image {
-  display:flex;
-  flex-direction: row;
-  gap:15px;
+.claim-details .claim-details--claimer{
+  display:grid;
+  grid-template-columns: repeat(2,minmax(100px, 200px)); 
+  padding-bottom: 10px;
 }
 
 .select-claim-btn {

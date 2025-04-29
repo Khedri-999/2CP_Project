@@ -64,6 +64,15 @@ function MyPosts() {
 
   const [activePost, setActivePost] = useState(null);
 
+
+  const handleDelete = async (postId) => {
+    try {
+      await axios.delete(`https://67fd5ab53da09811b1758011.mockapi.io/api/myposts/${postId}`);
+      setPosts(posts.filter(post => post.id !== postId));
+    } catch (err) {
+      console.error("Failed to delete post:", err);
+    }
+  }
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -95,6 +104,8 @@ function MyPosts() {
     setActivePost(null);
   };
 
+
+
   return (
     <>
     <div className="header">
@@ -111,11 +122,18 @@ function MyPosts() {
           <p>{post.description}</p>
           <p className="post-date">Posted on: {post.date}</p>
           
+          <div className="buttons-container">
           <button 
             className="claims-btn" 
             onClick={() => setActivePost(post)}>
-            View Claims
+          Claims
           </button>
+          <button 
+            className="delete-btn"
+            onClick={() => handleDelete(post.id)}>
+            Delete
+            </button>
+          </div>
         </div>
       ))}
     </div>
@@ -129,13 +147,18 @@ function MyPosts() {
             {activePost.claimRequests && activePost.claimRequests.length > 0 ? (
               activePost.claimRequests.map(claim => (
                 <div key={claim.id} className="claim-item">
-                  <div className="claim-image">
-                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXxn1cJViyxDRkaKaEC5JT9J3TVYNUIS_XcA&s"/>
-                  <div className="claim-details">
-                    <p><strong>User: </strong>{claim.requester}</p>
-                    <p><strong>Message: </strong>{claim.message}</p>
-                    <p><strong>Contact: </strong>{claim.contact}</p>
-                  </div>
+                  <div className="claim-details-container">
+                    <div className="claim-image">
+                      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXxn1cJViyxDRkaKaEC5JT9J3TVYNUIS_XcA&s" className="image-claim"/>
+                    </div>
+                    <div className="claim-details">
+                      <div className="claim-details--claimer">
+                        <p><strong>User: </strong>{claim.requester}</p>
+                        <p><strong>Contact: </strong>{claim.contact}</p>
+                      </div>
+                      <p><strong>Message: </strong>{claim.message}</p>
+                      
+                    </div>
                   </div>
                   <button 
                     className="select-claim-btn"

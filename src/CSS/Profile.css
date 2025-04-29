@@ -1,0 +1,57 @@
+.profile-container{
+  margin-left:170px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #f0f0f0;
+  height:100vh;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.profile{
+  background-color: #fff;
+  border-radius:10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding:30px;
+  height:400px;
+  min-width:300px;
+  width:40%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+
+.profile-image{
+  background-color:rgb(0, 0, 0);
+  height:110px;
+  width:110px;
+  border-radius:330px;
+  margin:50px 0 20px 0;
+}
+.user-picture{
+  height:100%;
+}
+
+.profile .log-out-button{
+  margin-top:auto;
+  color:white;
+  background-color: red;
+  padding:10px 20px;
+  border-radius:10px;
+  border:none;
+}
+.profile .log-out-button:hover{
+  cursor:pointer;
+}

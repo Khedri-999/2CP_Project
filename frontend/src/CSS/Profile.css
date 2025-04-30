@@ -1,0 +1,171 @@
+.profile-container {
+  margin-left: 170px;
+  padding: 40px 20px;
+  height:100vh; 
+  background-color: #0000006c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url('../assets/estin-landing1.png');
+  background-size: cover;      
+  background-position: center;  
+  background-repeat: no-repeat;
+  
+  }
+
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 600px) {
+  .profile-wrapper {
+    padding: 20px;
+    min-height: 500px;
+  }
+
+  .info-row{
+    width:100%;
+  }
+
+
+  .profile-content {
+    width: 100%;
+  }
+
+  .profile-content h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  .profile-background{
+    width: 60%;
+    height: 40%;
+    top: 150px;
+  }
+}
+
+.phone-input {
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-top: 5px;
+  font-size: 14px;
+  width: 200px;
+}
+.profile-buttons{
+  display: flex;
+}
+
+
+.profile{
+  background-color: #fff;
+  border-radius:10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding:30px;
+  height:400px;
+  min-width:300px;
+  width:50%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+
+.profile-image{
+  background-color:rgb(0, 0, 0);
+  height:110px;
+  width:110px;
+  border-radius:330px;
+  top:-50px;
+  display:flex;
+  position:absolute;
+}
+
+.user-picture{
+  height:100%;
+}
+
+.profile .log-out-button .profile-buttons{
+  margin-top:auto;
+  color:white;
+  background-color: red;
+  padding:10px 20px;
+  border-radius:10px;
+  border:none;
+}
+.profile .log-out-button:hover .profile-buttons:hover{
+  cursor:pointer;
+}
+
+.profile-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 50px 0px;
+  min-height: 600px;
+}
+
+.profile-background {
+  position: absolute;
+  top: 140px;
+  left:1 20px;
+  width: 80%;
+  height:65%;
+  z-index: 0;
+  pointer-events:none;
+}
+
+.profile-content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  padding: 30px;
+  padding-left: 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background:none;
+  height: 100%;
+}
+
+.profile-content h1 {
+  padding-top:30px;
+}
+.profile-info{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  margin-top:40px;
+  width:100%;
+  height:100%;
+}
+
+.log-out-button {
+  margin-top:50px;
+  color:white;
+  background-color: rgb(186, 4, 4);
+  padding:10px 20px;
+  border-radius:10px;
+  border:none;
+  cursor:pointer;
+}
+.edit-button{
+  margin-top:50px;
+  color:white;
+  background-color: rgb(13, 3, 102);
+  padding:10px 20px;
+  border-radius:10px;
+  border:none;
+  cursor:pointer;
+}

@@ -79,7 +79,7 @@ SOCIALACCOUNT_PROVIDERS = {
 
 
 
-ACCOUNT_ADAPTER = 'login.adapters.MySocialAccountAdapter'
+ACCOUNT_ADAPTER = 'login.adapters.MyAccountAdapter'  
 SOCIALACCOUNT_ADAPTER = 'login.adapters.MySocialAccountAdapter'
 
 REST_FRAMEWORK = {

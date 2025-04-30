@@ -9,17 +9,13 @@ from allauth.socialaccount.providers.oauth2.client import OAuth2Error
 class CustomGoogleOAuth2CallbackView(SocialLoginView):
     adapter_class = GoogleOAuth2Adapter
 
-    def post(self, request, *args, **kwargs):
-        try:
-            response = super().post(request, *args, **kwargs)
-            user = request.user
-
-            if hasattr(user, 'jwt_token'):
-                return JsonResponse(user.jwt_token)
-            return response
-        except OAuth2Error as ex:
-            print(f"OAuth2Error: {str(ex)}")  # Log the error
-            return JsonResponse({"error": str(ex)}, status=400)
+    def get_response(self):
+        
+        response = super().get_response()
+        if hasattr(self.user, 'jwt_token'):
+            response.data['access'] = self.user.jwt_token['access']
+            response.data['refresh'] = self.user.jwt_token['refresh']
+        return response
 
 
 

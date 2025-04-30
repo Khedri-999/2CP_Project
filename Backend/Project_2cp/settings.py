@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -29,7 +30,6 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -37,30 +37,34 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites', 
+    'accounts', 
     'rest_framework',
-    'rest_framework_simplejwt',
-    'login' ,
+    'rest_framework_simplejwt', 
     'rest_framework.authtoken',
     'dj_rest_auth',
-    'dj_rest_auth.registration' ,
+    'dj_rest_auth.registration',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    'allauth.socialaccount.providers.google', 
-  
+    'allauth.socialaccount.providers.google',
+    'django_filters',
+    'login', 
+    'category' , 
+    'posts',
+   
+    'claims' ,
 ]
+
 
 SITE_ID = 1 
 
 
-
+AUTH_USER_MODEL = 'accounts.User'
 REST_USE_JWT = True 
 
-ACCOUNT_SIGNUP_FIELDS = ['email*', 'password1*', 'password2*']
-ACCOUNT_SIGNUP_FIELDS = ['email*', 'password1*', 'password2*']
-ACCOUNT_LOGIN_METHODS = {'email'}
-ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 
+ACCOUNT_SIGNUP_FIELDS = ['email*', 'username*', 'password1*', 'password2*']
 
 
 SOCIALACCOUNT_PROVIDERS = {
@@ -79,6 +83,8 @@ ACCOUNT_ADAPTER = 'login.adapters.MySocialAccountAdapter'
 SOCIALACCOUNT_ADAPTER = 'login.adapters.MySocialAccountAdapter'
 
 REST_FRAMEWORK = {
+
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
     'DEFAULT_AUTHENTICATION_CLASSES': (
     
         'rest_framework.authentication.TokenAuthentication',
@@ -199,4 +205,28 @@ TEMPLATES = [
 ]
 JWT_AUTH = {
     'JWT_VERIFY_IAT': False,  # Disables checking of the 'iat' claim (Not recommended for production)
+}
+
+REST_AUTH_REGISTER_SERIALIZERS = {
+    'REGISTER_SERIALIZER': 'dj_rest_auth.registration.serializers.RegisterSerializer',
+}
+
+
+
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT=os.path.join(BASE_DIR,"media/")
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': 'ERROR',  # Only show ERROR and CRITICAL messages
+    },
 }

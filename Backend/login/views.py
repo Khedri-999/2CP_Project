@@ -22,7 +22,7 @@ class CustomGoogleOAuth2CallbackView(SocialLoginView):
             return JsonResponse({"error": str(ex)}, status=400)
 
 
-# Add this to your views.py
+
 class GoogleCallbackTemplateView(View):
     def get(self, request, *args, **kwargs):
         return render(request, "google_callback.html")

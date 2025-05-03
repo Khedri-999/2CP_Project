@@ -18,7 +18,7 @@ function Home() {
   useEffect(() => {
     console.log(`Attempting to fetch data from: `);
 
-    axios.get('http://127.0.0.1:8000/api/found-items/')
+    axios.get('http://127.0.0.1:8000/api/items/')
       .then(res => {
         console.log('API Response Status:', res.status);
         console.log('API Data:', res.data); 

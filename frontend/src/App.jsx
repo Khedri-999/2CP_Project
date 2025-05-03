@@ -8,6 +8,7 @@ import MyClaims from './pages/MyClaims';
 import MyPosts from './pages/MyPosts';
 import Report from './pages/Report';
 import Profile from './pages/Profile';
+import GoogleSuccess from './GoogleSuccess';
 import {BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 
@@ -18,6 +19,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/Auth" element={<Auth />} />
+        <Route path="/GoogleSuccess" element={<GoogleSuccess />} />
         <Route path="/Auth/Terms" element={<Terms />} />
         <Route path="/home" element={<Home />} />
         <Route path="/home/MyPosts" element={<MyPosts />} />

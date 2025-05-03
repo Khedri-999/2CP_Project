@@ -5,8 +5,9 @@ import { Link } from 'react-router-dom';
 
 export default function Auth() {
   const handleGoogleSignIn = () => {
-    alert("Redirecting to Google Sign-In...");
+    window.location.href = "https://accounts.google.com/o/oauth2/v2/auth/oauthchooseaccount?client_id=86795754074-n1puig8gnf51it9sngse6c3v0gj15dm8.apps.googleusercontent.com&redirect_uri=http%3A%2F%2Flocalhost%3A8000%2Fapi%2Fauth%2Fgoogle%2Fcallback%2F&response_type=code&scope=openid%20email%20profile&service=lso&o2v=2&ddm=1&flowName=GeneralOAuthFlow";
   };
+  
 
   return (
     <div className="auth-container">
@@ -25,7 +26,7 @@ export default function Auth() {
         Google Sign-In Button */}
         <button className="google-signin-btn" onClick={handleGoogleSignIn}>
           <svg
-            xmlns="https://accounts.google.com/o/oauth2/v2/auth?client_id=86795754074-n1puig8gnf51it9sngse6c3v0gj15dm8.apps.googleusercontent.com&redirect_uri=http://localhost:8000/api/auth/google/callback/&response_type=code&scope=openid%20email%20profile"
+            xmlns="http://www.w3.org/2000/svg"
             preserveAspectRatio="xMidYMid"
             viewBox="0 0 256 262"
             className="google-icon"

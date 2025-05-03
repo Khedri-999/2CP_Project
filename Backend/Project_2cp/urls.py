@@ -25,15 +25,14 @@ urlpatterns = [
     path('api/', include('login.urls')),  
     path('api/auth/', include('dj_rest_auth.urls')),
     path('api/auth/registration/', include('dj_rest_auth.registration.urls')),
-    path('api/auth/social/', include('allauth.socialaccount.urls')),
-    path('api/categories/' , include('category.urls')) , 
+    path('api/categories/', include('category.urls')), 
     path('api/posts/', include('posts.urls')),
     path('api/claims/', include('claims.urls')),
     path('api/accounts/', include('accounts.urls')),
 
-
-
+    path('accounts/', include('allauth.urls')),
 ]
+
 
 
 

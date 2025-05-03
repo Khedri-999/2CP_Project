@@ -1,7 +1,8 @@
-from django.urls import path
-from .views import PostItemListCreateAPIView , PostItemDetailView
+# posts/urls.py
+from rest_framework.routers import DefaultRouter
+from .views import MyPostViewSet
 
-urlpatterns = [
-    path('', PostItemListCreateAPIView.as_view(), name='PostItem-list-create'),
-    path('<int:pk>/', PostItemDetailView.as_view(), name='PostItem-detail'),
-]
+router = DefaultRouter()
+router.register("", MyPostViewSet, basename="mypost")
+
+urlpatterns = router.urls

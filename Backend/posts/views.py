@@ -1,21 +1,16 @@
-from rest_framework import generics
-from .models  import PostItem
+# posts/views.py
+from rest_framework import viewsets, permissions
+from .models import PostItem
 from .serializers import PostItemSerializer
-from rest_framework.generics import RetrieveAPIView
 
-class PostItemListCreateAPIView(generics.ListCreateAPIView):
+class MyPostViewSet(viewsets.ModelViewSet):
     serializer_class = PostItemSerializer
+    permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
-       queryset = PostItem.objects.all()
-       category_name = self.request.query_params.get('category')
-       if category_name : 
-           queryset = queryset.filter(category__name__iexact=category_name)
-       return queryset
-
-
-class PostItemDetailView(RetrieveAPIView):
-    queryset = PostItem.objects.all()
-    serializer_class = PostItemSerializer
-
-
+        # only return posts created by the current user
+        return PostItem.objects.filter(user=self.request.user)
+    
+    def perform_create(self, serializer):
+        # automatically set the `user` to request.user on create
+        serializer.save(user=self.request.user)

@@ -1,12 +1,11 @@
-from rest_framework import permissions , viewsets
+from rest_framework import viewsets, permissions
 from .models import Claim
-
 from .serializers import ClaimSerializer
 
-class ClaimItemViewSet(viewsets.ModelViewSet) : 
-    queryset = Claim.objects.all() 
+class ClaimViewSet(viewsets.ModelViewSet):
     serializer_class = ClaimSerializer
     permission_classes = [permissions.IsAuthenticated]
-    def perform_create(self, serializer):
-        serializer.save(requester=self.request.user)
 
+    def get_queryset(self):
+        # only return the current user’s claims
+        return Claim.objects.filter(requester=self.request.user)

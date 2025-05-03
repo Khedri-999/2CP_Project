@@ -1,11 +1,7 @@
-from django.urls import path , include
-
 from rest_framework.routers import DefaultRouter
-from .views import ClaimItemViewSet
+from .views import ClaimViewSet
 
 router = DefaultRouter()
-router.register(r'requests', ClaimItemViewSet, basename='Post_item_request')
+router.register('', ClaimViewSet, basename='claim')
 
-urlpatterns = [
-    path('', include(router.urls)),
-]
+urlpatterns = router.urls

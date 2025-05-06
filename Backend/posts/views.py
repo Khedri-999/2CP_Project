@@ -3,8 +3,10 @@ from rest_framework.generics import RetrieveAPIView
 from .models import PostItem
 from .serializers import PostItemSerializer
 
+from rest_framework.permissions import IsAuthenticated
 
-# List all PostItems (GET)
+
+# List all PostItems (G
 class AllItemsAPIView(generics.ListAPIView):
     serializer_class = PostItemSerializer
 
@@ -12,7 +14,7 @@ class AllItemsAPIView(generics.ListAPIView):
         return PostItem.objects.all()
 
 
-# List all PostItems or filter by category (GET) and create new item (POST)
+# List all PostItems or filter by category and create new item (POST)
 class PostItemListCreateAPIView(generics.ListCreateAPIView):
     serializer_class = PostItemSerializer
 
@@ -24,7 +26,15 @@ class PostItemListCreateAPIView(generics.ListCreateAPIView):
         return queryset
 
 
-# Retrieve details of a single PostItem (GET)
+# Retrieve details of a single PostItem 
 class PostItemDetailView(RetrieveAPIView):
     queryset = PostItem.objects.all()
     serializer_class = PostItemSerializer
+
+
+class MyPostsAPIView(generics.ListAPIView):
+    serializer_class = PostItemSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        return PostItem.objects.filter(user=self.request.user)

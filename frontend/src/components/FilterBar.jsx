@@ -1,26 +1,43 @@
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import "../CSS/FilterBar.css";
 
-import '../CSS/FilterBar.css';
-import { useState } from 'react';
+function FilterBar({ setSelectedFilter }) {
+  const [categories, setCategories] = useState([
+  ]);
+  const [activeFilter, setActiveFilter] = useState("all");
 
-const filters=['all','card','money','glasses','charger','key','clothes','phone','pc','backpac','others'];
-function FilterBar({setSelectedFilter}){
-  const [activeFilter,setActiveFilter]=useState('all');
+  useEffect(() => {
+    axios
+      .get("http://localhost:8000/api/categories/")
+      .then((res) => {
+        // API gives [{id:1,name:"Keys"},…]
+        setCategories([
+          { id: "all", name: "All" },
+          ...res.data,
+        ]);
+      })
+      .catch((err) => console.error("Failed to load categories:", err));
+  }, []);
 
-  const handleFilter=(filter)=>{
-    setActiveFilter(filter);
-    setSelectedFilter(filter);
-  }
-  return(
-    <div className='filter-container'>
-      {filters.map((filter)=>(
-        <button 
-        className={filter===activeFilter ? 'active':''}
-        onClick={()=>handleFilter(filter)}
+  const handleFilter = (filterId) => {
+    setActiveFilter(filterId);
+    setSelectedFilter(filterId);
+  };
+
+  return (
+    <div className="filter-container">
+      {categories.map((cat) => (
+        <button
+          key={cat.id}
+          className={String(cat.id) === String(activeFilter) ? "active" : ""}
+          onClick={() => handleFilter(cat.id)}
         >
-          {filter}
+          {cat.name}
         </button>
       ))}
     </div>
   );
 }
+
 export default FilterBar;

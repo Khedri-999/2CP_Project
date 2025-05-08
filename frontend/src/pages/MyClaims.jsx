@@ -47,28 +47,41 @@ function MyClaims() {
     <div className="my-claims-container">
       <h2>My Claims</h2>
       <div className="claims-grid">
-        {claims.map((claim) => (
-          <div key={claim.id} className={`claim-card ${claim.status}`}>
-            <img src={`http://localhost:8000${claim.image}`}
-            alt={claim.name} className="claim-image" />
-            <h3>{claim.name}</h3>
-            <p><strong>Found at:</strong> {claim.place}</p>
-            <p><strong>Claimed on:</strong> {claim.date}</p>
-            <p className="status-label">Status: {claim.status.toUpperCase()}</p>
-            
-            {claim.status === "pending" && (
-              <button className="cancel-btn" onClick={() => cancelClaim(claim.id)}>Cancel Claim</button>
-            )}
-            
-            {claim.status === "accepted" && (
-              <div className="finder-info">
-                <p><strong>Finder:</strong> {claim.finderEmail}</p>
-                <p><strong>Phone:</strong> {claim.finderPhone}</p>
-                <button className="message-btn">Message Finder</button>
-              </div>
-            )}
-          </div>
-        ))}
+      {claims.map((claim) => (
+  <div key={claim.id} className={`claim-card ${claim.status}`}>
+    <img
+      src={claim.image || img1}           // use default if somehow empty
+      alt={claim.name}
+      className="claim-image"
+    />
+    <h3>{claim.name}</h3>
+    <p><strong>Found at:</strong> {claim.place}</p>
+    <p><strong>Claimed on:</strong> {claim.date}</p>
+    <p className="status-label">
+      Status: {claim.status.toUpperCase()}
+    </p>
+
+    {claim.status === "pending" && (
+      <button
+        className="cancel-btn"
+        onClick={() => cancelClaim(claim.id)}
+      >
+        Cancel Claim
+      </button>
+    )}
+
+    {claim.status === "accepted" && (
+      <div className="finder-info">
+        <p><strong>Finder:</strong> {claim.finderEmail}</p>
+        <p><strong>Phone:</strong> {claim.finderPhone || "N/A"}</p>
+        <button className="message-btn">
+          Message Finder
+        </button>
+      </div>
+    )}
+  </div>
+))}
+
       </div>
     </div>
     </>

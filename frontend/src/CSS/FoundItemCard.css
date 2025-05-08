@@ -11,6 +11,11 @@
   position: relative;
 }
 
+.blurred {
+  filter: blur(8px);
+}
+
+
 .item-card:hover {
   transform: scale(1.02);
   box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.15);

@@ -1,34 +1,75 @@
+
 import '../CSS/Profile.css';
 import SideBar from "../components/SideBar";
 import NavBar from "../components/NavBar";
 import axios from 'axios';
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import img1 from '../assets/picture.jpg';
 
-function Profile(){
+
+function Profile() {
   const [profileData, setProfileData] = useState({
-    name: "Mehdi Mezerreg",
-    email: "m_mezerreg@estin.dz",
-    joinedDate: "11 March 2025",
-    phoneNumber: "+213 6 96 94 43 24",
+    name: '',
+    email: '',
+    phoneNumber: '',
+    profilePicture: null,
+    joinedDate: '',
   });
-
+  
   const [editing, setEditing] = useState(false);
-  const [newPhone, setNewPhone] = useState(profileData.phoneNumber);
-  const [isLoading, setIsLoading] = useState(false);
+  const [newPhone, setNewPhone] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
+
+  // 🔐 Load token from localStorage
+  const token = localStorage.getItem('authToken');
+
+  useEffect(() => {
+    const token = localStorage.getItem('authToken');
+    if (!token) return;
+  
+    setIsLoading(true);
+  
+    axios.get('/api/accounts/profile/', {
+      headers: { Authorization: `Token ${token}` }
+    })
+    .then(res => {
+      const d = res.data;
+      setProfileData({
+        name:           d.full_name || '',
+        email:          d.email      || '',
+        phoneNumber:    d.phone_number || '',
+        profilePicture: d.profile_picture || null,
+        joinedDate:     d.date_joined
+                          ? new Date(d.date_joined).toLocaleDateString()
+                          : '',
+      });
+      setNewPhone(d.phone_number || '');
+    })
+    .catch(err => console.error('Error fetching profile:', err))
+    .finally(() => setIsLoading(false));
+  }, []);
+  
+  
+  
 
   const handleEditClick = () => {
     if (editing) {
-      // Save new phone number
-      setProfileData(prev => ({ ...prev, phoneNumber: newPhone }));
-      // Optionally send update to backend:
-      
-      axios.post('/api/update-phone', { phoneNumber: newPhone })
-        .then(response => console.log("Updated"))
-        .catch(error => console.error("Error:", error));
-      
+      // 🔁 Update phone number on backend
+      axios.patch('/api/accounts/profile/', { phone_number: newPhone }, {
+        headers: {
+          Authorization: `Token ${token}`,
+        },
+      })
+      .then(res => {
+        setProfileData(prev => ({ ...prev, phoneNumber: newPhone }));
+        console.log("Phone updated");
+       })
+      .catch(err => console.error("Failed to update phone:", err));
     }
     setEditing(!editing);
   };
+
 
   return (
     <>
@@ -38,7 +79,7 @@ function Profile(){
       <SideBar />
       <div className='profile-container'>
         <div className="profile-wrapper">
-          <svg className="profile-background"
+        <svg className="profile-background"
             viewBox="0 0 1213 731"
             preserveAspectRatio="xMidYMid slice"
             xmlns="http://www.w3.org/2000/svg">
@@ -47,9 +88,15 @@ function Profile(){
 
           <div className="profile-content">
             <div className="profile-image">
-              <img src={''} alt="user" className="user-picture" />
+              <img
+                src={profileData.profilePicture || img1}
+                alt="user"
+                className="user-picture"
+              />
             </div>
-            <h1 className="profile-name">{profileData.email}</h1>
+            <h1 className="profile-name">{profileData.name}</h1>
+            <p className="profile-email">{profileData.email}</p>
+
             <div className="profile-info">
               <div className="info-row">
                 <span className="info-label">Joined on :</span>
@@ -69,10 +116,18 @@ function Profile(){
               </div>
             </div>
             <div className="profile-buttons">
-             <button className="edit-button" onClick={handleEditClick}>
-              {editing ? "Save" : "Edit"}
-             </button>
-             <button className="log-out-button">LOG-OUT</button>
+              <button className="edit-button" onClick={handleEditClick}>
+                {editing ? "Save" : "Edit"}
+              </button>
+              <Link to='/' className='log-out-button'>
+                <button onClick={() => {
+                  localStorage.removeItem('authToken');
+                  localStorage.removeItem('user');
+                  window.location.href = '/';
+                }}>
+                  Log-out
+                </button>
+              </Link>
             </div>
           </div>
         </div>

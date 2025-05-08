@@ -3,36 +3,51 @@ import "../CSS/MyPosts.css";
 import SideBar from "../components/SideBar";
 import NavBar from "../components/NavBar";
 import axios from "axios";
+import img1 from "../assets/picture.jpg";
 
-function MyPosts() {
+export default function MyPosts() {
   const [posts, setPosts] = useState([]);
   const [activePost, setActivePost] = useState(null);
+  const [claims, setClaims] = useState([]);
   const token = localStorage.getItem("token");
 
   useEffect(() => {
+    if (!token) return;
     axios
-      .get("http://localhost:8000/api/posts/", {
+      .get("http://localhost:8000/api/posts/post-items/", {
         headers: { Authorization: `Token ${token}` },
       })
       .then((res) => setPosts(res.data))
-      .catch(console.error);
+      .catch((err) => {
+        console.error("Failed to load MyPosts:", err.response || err);
+        setPosts([]);
+      });
   }, [token]);
 
   const handleDelete = (postId) => {
     axios
-      .delete(`http://localhost:8000/api/posts/${postId}/`, {
+      .delete(`http://localhost:8000/api/posts/post-items/${postId}/`, {
         headers: { Authorization: `Token ${token}` },
       })
       .then(() => {
-        setPosts((p) => p.filter((post) => post.id !== postId));
+        setPosts((curr) => curr.filter((post) => post.id !== postId));
       })
-      .catch(console.error);
+      .catch((err) =>
+        console.error(`Failed to delete post ${postId}:`, err.response || err)
+      );
   };
 
-  const handleSelectClaim = (postId, claimId) => {
-    console.log(`Post ${postId}: Claim ${claimId} selected.`);
-    // You could call a PATCH here to update claim.status = 'accepted'
-    setActivePost(null);
+  const handleViewClaims = (post) => {
+    setActivePost(post);
+    axios
+      .get(`http://localhost:8000/api/claims/?post_item=${post.id}`, {
+        headers: { Authorization: `Token ${token}` },
+      })
+      .then((res) => setClaims(res.data))
+      .catch((err) => {
+        console.error("Failed to fetch claims:", err.response || err);
+        setClaims([]);
+      });
   };
 
   return (
@@ -43,75 +58,56 @@ function MyPosts() {
       <SideBar />
       <div className="my-posts-container">
         <h2>My Posts</h2>
-        <div className="posts-grid">
-          {posts.map((post) => (
-            <div key={post.id} className="post-card">
-              <img
-                src={`http://localhost:8000${post.image}`}
-                alt={post.title}
-                className="post-image"
-              />
-              <h3>{post.title}</h3>
-              <p>{post.description}</p>
-              <p className="post-date">Posted on: {post.date}</p>
-              <div className="buttons-container">
-                <button
-                  className="claims-btn"
-                  onClick={() => setActivePost(post)}
-                >
-                  Claims ({post.claimRequests.length})
-                </button>
-                <button
-                  className="delete-btn"
-                  onClick={() => handleDelete(post.id)}
-                >
-                  Delete
-                </button>
-              </div>
-            </div>
-          ))}
-        </div>
+        {posts.length === 0 ? (
+          <p>You haven’t reported any items yet.</p>
+        ) : (
+          <div className="posts-grid">
+            {posts.map((post) => {
+              const title = post.category?.name || post.name || "Unnamed";
+              const description = post.description;
+              const dateFound = post.date_found;
+              const imageUrl = post.image || img1;
+
+              return (
+                <div key={post.id} className="post-card">
+                  <img src={imageUrl} alt={title} className="post-image" />
+                  <h3>{title}</h3>
+                  <p>{description}</p>
+                  <p className="post-date">Found on: {dateFound}</p>
+                  <div className="buttons-container">
+                    <button
+                      className="delete-btn"
+                      onClick={() => handleDelete(post.id)}
+                    >
+                      Delete
+                    </button>
+                    <button onClick={() => handleViewClaims(post)}>
+                      View Claims
+                    </button>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        )}
 
         {activePost && (
           <div className="modal1-container">
             <div className="modal1">
-              <h3>Claim Requests for "{activePost.title}"</h3>
-              <div className="claim-list">
-                {activePost.claimRequests.length > 0 ? (
-                  activePost.claimRequests.map((claim) => (
-                    <div key={claim.id} className="claim-item">
-                      <div className="claim-details-container">
-                        <img
-                          src="https://via.placeholder.com/80"
-                          className="image-claim"
-                          alt="claimer"
-                        />
-                        <div className="claim-details">
-                          <p>
-                            <strong>User:</strong> {claim.requester}
-                          </p>
-                          <p>
-                            <strong>Contact:</strong> {claim.contact}
-                          </p>
-                          <p>
-                            <strong>Message:</strong> {claim.message}
-                          </p>
-                        </div>
-                      </div>
-                      <button
-                        className="select-claim-btn"
-                        onClick={() =>
-                          handleSelectClaim(activePost.id, claim.id)
-                        }
-                      >
-                        Select Claim
-                      </button>
-                    </div>
-                  ))
-                ) : (
-                  <p>No claim requests received.</p>
-                )}
-              </div>
+              <h3>Claims for "{activePost.category?.name || activePost.name}"</h3>
+              {claims.length === 0 ? (
+                <p>No claims submitted yet.</p>
+              ) : (
+                <ul className="claim-list">
+                  {claims.map((claim) => (
+                    <li key={claim.id}>
+                      <strong>Email:</strong> {claim.owner_email} <br />
+                      <strong>Phone:</strong> {claim.owner_phone || "N/A"} <br />
+                      <strong>Details:</strong> {claim.message}
+                    </li>
+                  ))}
+                </ul>
+              )}
               <button
                 className="close-modal-btn"
                 onClick={() => setActivePost(null)}
@@ -125,5 +121,3 @@ function MyPosts() {
     </>
   );
 }
-
-export default MyPosts;

@@ -1,70 +1,53 @@
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import NavBar from "../components/NavBar";
 import FilterBar from "../components/FilterBar";
 import SideBar from "../components/SideBar";
 import FoundItemCard from "../components/FoundItemCard";
-import '../CSS/Home.CSS';
-import React,{ useState, useEffect } from "react";
 import img1 from '../assets/picture.jpg';
-import axios from 'axios';
+import '../CSS/Home.css';
+
+// set a default base URL for axios
+axios.defaults.baseURL = "http://127.0.0.1:8000";
 
 function Home() {
   const [items, setItems] = useState([]);
-  const [selectedFilter, setSelectedFilter] = useState('all');
+  const [selectedFilter, setSelectedFilter] = useState("all");
   const [selectedItem, setSelectedItem] = useState(null);
   const [selectedContact, setSelectedContact] = useState(null);
-  const [image, setImage] = useState(null);
-  const [selectedSide,setSelectedSide] = useState('Home');
   const [claimForm, setClaimForm] = useState({
-  phone: "",
-  message: "",
-  imageFile: null,
+    phone: "",
+    message: "",
+    imageFile: null,
   });
-
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    console.log("Attempting to fetch data from: http://127.0.0.1:8000/api/posts/post-items/all/");
-  
+
     axios
-      .get("http://127.0.0.1:8000/api/posts/post-items/all/", {
+      .get("/api/posts/post-items/all/", {
         headers: token ? { Authorization: `Token ${token}` } : undefined,
       })
-      .then(res => {
-        console.log("API Response Status:", res.status);
-        console.log("API Data:", res.data);
-  
-        if (Array.isArray(res.data)) {
-          setItems(res.data);
-        } else if (res.data && Array.isArray(res.data.results)) {
-          setItems(res.data.results); // if paginated
-        } else {
-          console.warn("Received data is not an array:", res.data);
-          setItems([]);
-        }
+      .then((res) => {
+        const data = Array.isArray(res.data)
+          ? res.data
+          : Array.isArray(res.data.results)
+          ? res.data.results
+          : [];
+        setItems(data);
       })
-      .catch(err => {
-        if (err.response) {
-          console.error("Error Response Data:", err.response.data);
-          console.error("Error Response Status:", err.response.status);
-          console.error("Error Response Headers:", err.response.headers);
-        } else if (err.request) {
-          console.error("Error Request:", err.request);
-          alert("Could not connect to the backend server. Is it running?");
-        } else {
-          console.error("Error Message:", err.message);
-        }
-        setItems([]); // empty on error
+      .catch((err) => {
+        console.error(err);
+        setItems([]);
       });
   }, []);
-  
 
-  const handleClaimChange = e => {
+  const handleClaimChange = (e) => {
     const { name, value, type, files } = e.target;
-    if (type === "file") {
-      setClaimForm(f => ({ ...f, imageFile: files[0] }));
-    } else {
-      setClaimForm(f => ({ ...f, [name]: value }));
-    }
+    setClaimForm((prev) => ({
+      ...prev,
+      [name]: type === "file" ? files[0] : value,
+    }));
   };
 
   const handleClaimSubmit = (e) => {
@@ -73,79 +56,75 @@ function Home() {
     const formData = new FormData();
     formData.append("post_item", selectedContact.id);
     formData.append("message", claimForm.message);
-    if (claimForm.imageFile) {
-      formData.append("image", claimForm.imageFile);
-    }
-  
-    axios.post(
-      "http://localhost:8000/api/claims/",
-      formData,
-      {
+    if (claimForm.imageFile) formData.append("image", claimForm.imageFile);
+
+    axios
+      .post("/api/claims/", formData, {
         headers: {
           Authorization: `Token ${token}`,
           "Content-Type": "multipart/form-data",
         },
-      }
-    )
-    .then((res) => {
-      alert("Claim submitted!");
-      setSelectedContact(null);
-      setClaimForm({ phone: "", message: "", imageFile: null });
-    })
-    .catch((err) => {
-      console.error("Claim error:", err.response?.data || err);
-      alert("Failed to submit claim.");
-    });
+      })
+      .then(() => {
+        alert("Claim submitted!");
+        setSelectedContact(null);
+        setClaimForm({ phone: "", message: "", imageFile: null });
+      })
+      .catch((err) => {
+        console.error(err);
+        alert("Failed to submit claim.");
+      });
   };
-  
-  
-  
-
 
   const filteredItems = items.filter((item) => {
     if (selectedFilter === "all") return true;
-    if (!item.category || item.category.id == null) return false;
-    return String(item.category.id) === String(selectedFilter);
+  
+    const catId =
+      typeof item.category === "object"
+        ? item.category.id
+        : item.category;
+  
+    return String(catId) === String(selectedFilter);
   });
   
-  
 
-  document.title = 'home';
-
-  const handleImageUpload = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setImage(URL.createObjectURL(file));
-    }
-  };
-
+  document.title = "Home";
 
   return (
     <div>
       <div className="header">
         <NavBar />
-        <FilterBar setSelectedFilter={setSelectedFilter} />
+        <FilterBar
+          selectedFilter={selectedFilter}
+          setSelectedFilter={setSelectedFilter}
+        />
       </div>
 
-      <SideBar/>
+      <SideBar />
 
       <div className="items-container">
         {filteredItems.map((item) => (
           <FoundItemCard
-            item={item}
             key={item.id}
+            item={item}
             onContactClick={() => setSelectedContact(item)}
             onDetailClick={() => setSelectedItem(item)}
           />
         ))}
       </div>
 
+   
+
       {/* Item Details Modal */}
       {selectedItem && (
         <div className="modal-container">
           <div className="modal">
             <div className="modal-image-container">
-              <img src={selectedItem.image || img1} alt="item" className={`modal-image ${selectedItem.blur_image ? "blurred" : ""}`} />
+            <img 
+              src={selectedItem.image || img1} 
+              alt="item" 
+              className={`modal-image ${selectedItem.blur_image ? "blurred" : ""}`} 
+            />
             </div>
             <div className="modal-details-container">
               <h3>{selectedItem.category?.name || selectedItem.name}</h3>
@@ -214,7 +193,7 @@ function Home() {
   </div>
 )}
 
-    </div>
+</div>
   );
 }
 

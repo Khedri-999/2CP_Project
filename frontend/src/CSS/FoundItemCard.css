@@ -12,7 +12,7 @@
 }
 
 .blurred {
-  filter: blur(8px);
+  filter: blur(5px);
 }
 
 
@@ -36,12 +36,16 @@
   border-radius: 50px 0 0 0;
   max-height: 230px;
   object-fit: cover;
-  filter: blur(3px);
+  filter: none;
   transition: filter 0.3s ease;
 }
 
-.item-card:hover .item-image {
-  filter: blur(3px);
+.item-card .item-image.blurred {
+  filter: blur(5px); /* 👈 Only apply blur when this class is present */
+}
+
+.item-card:hover .item-image.blurred {
+  filter: blur(5px); /* 👈 Keep same blur on hover */
 }
 
 .item-card .item-details {

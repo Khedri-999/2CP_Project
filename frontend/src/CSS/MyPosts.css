@@ -266,10 +266,16 @@
   padding: 2px;
 }
 
-.claim-details-container .image-claim{
-  height:100%;
-  width:100%;
+/* At the bottom of your modal1 CSS file */
+
+.claim-details-container .image-claim {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+  flex-shrink: 0;   /* don’t let it grow or stretch */
 }
+
 
 .claim-details-container .claim-details{
   margin: 15px 10px;

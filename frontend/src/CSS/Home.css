@@ -8,7 +8,7 @@
   animation: fadeIn 0.5s ease-in-out;
 }
 
-.blurred {
+.item-card .blurred {
   filter: blur(8px);
 }
 
@@ -114,12 +114,14 @@
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
+  filter: none;
   transition: filter 0.5s ease;
 }
 
-.modal-container .modal-image.loaded {
-  filter: blur(0);
+.modal-image.blurred {
+  filter: blur(8px);
 }
+
 
 .modal .close-btn {
   position: absolute;

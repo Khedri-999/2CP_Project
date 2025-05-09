@@ -14,8 +14,10 @@ function FoundItemCard({ item, onDetailClick, onContactClick }) {
         <img
           src={imageSrc}
           alt={title}
-          className={`item-image ${item.blur_image ? "blurred" : ""}`}
-        />
+          className={`item-image ${
+            item.blur_image === true || item.blur_image === "true" ? "blurred" : ""
+          }`}
+                  />
       </div>
       <div className="item-details">
         <h3>{title}</h3>

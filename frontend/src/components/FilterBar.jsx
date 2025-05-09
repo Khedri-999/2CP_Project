@@ -1,37 +1,35 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import axios from "axios";
 import "../CSS/FilterBar.css";
 
-function FilterBar({ setSelectedFilter }) {
-  const [categories, setCategories] = useState([
+function FilterBar({ selectedFilter, setSelectedFilter }) {
+  const [categories, setCategories] = React.useState([
+    { id: "all", name: "All" }
   ]);
-  const [activeFilter, setActiveFilter] = useState("all");
 
   useEffect(() => {
     axios
       .get("http://localhost:8000/api/categories/")
       .then((res) => {
-        // API gives [{id:1,name:"Keys"},…]
-        setCategories([
-          { id: "all", name: "All" },
-          ...res.data,
-        ]);
+        // Remove any category that has name === "All"
+        const filteredCategories = res.data.filter(
+          (cat) => cat.name.toLowerCase() !== "all"
+        );
+        setCategories([{ id: "all", name: "All" }, ...filteredCategories]);
       })
       .catch((err) => console.error("Failed to load categories:", err));
   }, []);
-
-  const handleFilter = (filterId) => {
-    setActiveFilter(filterId);
-    setSelectedFilter(filterId);
-  };
+  
 
   return (
     <div className="filter-container">
       {categories.map((cat) => (
         <button
           key={cat.id}
-          className={String(cat.id) === String(activeFilter) ? "active" : ""}
-          onClick={() => handleFilter(cat.id)}
+          className={
+            String(cat.id) === String(selectedFilter) ? "active" : ""
+          }
+          onClick={() => setSelectedFilter(cat.id)}
         >
           {cat.name}
         </button>

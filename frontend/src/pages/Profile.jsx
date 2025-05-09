@@ -22,10 +22,10 @@ function Profile() {
   const [isLoading, setIsLoading] = useState(true);
 
   // 🔐 Load token from localStorage
-  const token = localStorage.getItem('authToken');
+  const token = localStorage.getItem('token');
 
   useEffect(() => {
-    const token = localStorage.getItem('authToken');
+    const token = localStorage.getItem('token');
     if (!token) return;
   
     setIsLoading(true);
@@ -121,8 +121,7 @@ function Profile() {
               </button>
               <Link to='/' className='log-out-button'>
                 <button onClick={() => {
-                  localStorage.removeItem('authToken');
-                  localStorage.removeItem('user');
+                  localStorage.removeItem('token');
                   window.location.href = '/';
                 }}>
                   Log-out

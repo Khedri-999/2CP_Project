@@ -11,7 +11,7 @@ function FilterBar({ selectedFilter, setSelectedFilter }) {
     axios
       .get("http://localhost:8000/api/categories/")
       .then((res) => {
-        // Remove any category that has name === "All"
+        
         const filteredCategories = res.data.filter(
           (cat) => cat.name.toLowerCase() !== "all"
         );

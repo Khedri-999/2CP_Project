@@ -1,5 +1,6 @@
-// src/components/SideBar.jsx
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
 import "../CSS/SideBar.css";
 import side1 from "../assets/side1.png";
 import side2 from "../assets/side2.png";
@@ -10,12 +11,14 @@ import side6 from "../assets/side6.png";
 
 export default function SideBar() {
   const { pathname } = useLocation();
+  const navigate = useNavigate();
+  const { logout } = useContext(AuthContext);
 
   const isActive = (path) => pathname === path;
 
   const handleLogout = () => {
-    localStorage.removeItem("token");
-    window.location.href = "/";
+    logout();         
+    navigate("/");    
   };
 
   return (

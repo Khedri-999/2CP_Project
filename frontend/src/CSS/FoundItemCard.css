@@ -33,7 +33,7 @@
 .item-card .item-image {
   width: 97%;
   height: 97%;
-  border-radius: 50px 0 0 0;
+  border-radius: 0 45px 0 0;
   max-height: 230px;
   object-fit: cover;
   filter: none;
@@ -41,16 +41,17 @@
 }
 
 .item-card .item-image.blurred {
-  filter: blur(5px); /* 👈 Only apply blur when this class is present */
+  filter: blur(5px); 
 }
 
 .item-card:hover .item-image.blurred {
-  filter: blur(5px); /* 👈 Keep same blur on hover */
+  filter: blur(5px); 
 }
 
 .item-card .item-details {
   padding: 10px;
-  height: 120px;
+  padding-top: 5px;
+  height:150px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

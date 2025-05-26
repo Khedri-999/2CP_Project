@@ -3,19 +3,19 @@ import "../CSS/MyClaims.css";
 import SideBar from "../components/SideBar";
 import NavBar from "../components/NavBar";
 import axios from 'axios';
+import img1 from "../assets/picture.jpg";
 
 
 function MyClaims() {
   const [claims, setClaims] = useState([]);
   
   useEffect(() => {
-    // grab the token your GoogleSignIn flow stored
     const token = localStorage.getItem('token');
+    if (!token) return;
+    
     axios.get('http://localhost:8000/api/claims/', {
       headers: {
-        // if you used TokenAuthentication:
         Authorization: `Token ${token}`,
-        // if you’d switched to JWT: `Bearer ${token}`
       }
     })
     .then(res => {
@@ -50,7 +50,7 @@ function MyClaims() {
       {claims.map((claim) => (
   <div key={claim.id} className={`claim-card ${claim.status}`}>
     <img
-      src={claim.image || img1}           // use default if somehow empty
+      src={claim.image || img1}          
       alt={claim.name}
       className="claim-image"
     />
@@ -71,14 +71,20 @@ function MyClaims() {
     )}
 
     {claim.status === "accepted" && (
-      <div className="finder-info">
-        <p><strong>Finder:</strong> {claim.finderEmail}</p>
-        <p><strong>Phone:</strong> {claim.finderPhone || "N/A"}</p>
-        <button className="message-btn">
-          Message Finder
-        </button>
-      </div>
-    )}
+  <div className="finder-info">
+    <p><strong>Finder:</strong> {claim.finderEmail}</p>
+    <p><strong>Phone:</strong> {claim.finderPhone || "N/A"}</p>
+
+    <a
+  href={`mailto:${claim.finderEmail}?subject=Claim about ${encodeURIComponent(claim.name)}&body=${encodeURIComponent(`Hello,\n\nI'm contacting you regarding the item "${claim.name}" I claimed on Found-It.\n\nThank you!`)}`}
+  className="email-btn"
+>
+  Email Finder
+</a>
+
+  </div>
+)}
+
   </div>
 ))}
 

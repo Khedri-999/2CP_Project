@@ -71,7 +71,9 @@ function LandingPage() {
         <div className="text-section">
           <h1>Recover Without Email Clutter</h1>
           <p>Dedicated For Reporting and Recovering Lost and Found Items In Amizour Campus, Helping <img src={estin} alt="estins" className="estins-logo"/> Students Reconnect With What Matters The Most.</p>
-          <button className="cta-btn">Get Started</button>
+          <Link to='/Auth' className='Auth-link'>
+           <button className="cta-btn">Get Started</button>
+          </Link>
         </div>
        </div>
       </div>

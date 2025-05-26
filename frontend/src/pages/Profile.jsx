@@ -4,7 +4,6 @@ import SideBar from "../components/SideBar";
 import NavBar from "../components/NavBar";
 import axios from 'axios';
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import img1 from '../assets/picture.jpg';
 
 
@@ -21,7 +20,6 @@ function Profile() {
   const [newPhone, setNewPhone] = useState('');
   const [isLoading, setIsLoading] = useState(true);
 
-  // 🔐 Load token from localStorage
   const token = localStorage.getItem('token');
 
   useEffect(() => {
@@ -55,7 +53,6 @@ function Profile() {
 
   const handleEditClick = () => {
     if (editing) {
-      // 🔁 Update phone number on backend
       axios.patch('/api/accounts/profile/', { phone_number: newPhone }, {
         headers: {
           Authorization: `Token ${token}`,
@@ -119,14 +116,6 @@ function Profile() {
               <button className="edit-button" onClick={handleEditClick}>
                 {editing ? "Save" : "Edit"}
               </button>
-              <Link to='/' className='log-out-button'>
-                <button onClick={() => {
-                  localStorage.removeItem('token');
-                  window.location.href = '/';
-                }}>
-                  Log-out
-                </button>
-              </Link>
             </div>
           </div>
         </div>

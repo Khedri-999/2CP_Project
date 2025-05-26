@@ -44,59 +44,39 @@ export default function MyPosts() {
         headers: { Authorization: `Token ${token}` },
       })
       .then((res) => {
-        console.log("CLAIMS PAYLOAD:", res.data);
         setClaims(res.data);
       })
-      
       .catch((err) => {
         console.error("Failed to fetch claims:", err.response || err);
         setClaims([]);
       });
-
-      const handleSelectClaim = async (postId, selectedClaimId) => {
-        if (!token) return;
-        try {
-          // 1️⃣ Accept the chosen claim
-          await axios.patch(
-            `http://localhost:8000/api/claims/${selectedClaimId}/`,
-            { status: "accepted" },
-            { headers: { Authorization: `Token ${token}` } }
-          );
-    
-          // 2️⃣ Reject all the other pending claims for this post
-          const otherPending = claims.filter(
-            (c) => c.post_item === postId && c.id !== selectedClaimId && c.status === "pending"
-          );
-    
-          await Promise.all(
-            otherPending.map((c) =>
-              axios.patch(
-                `http://localhost:8000/api/claims/${c.id}/`,
-                { status: "rejected" },
-                { headers: { Authorization: `Token ${token}` } }
-              )
-            )
-          );
-    
-          // 3️⃣ Update local state in one go
-          setClaims((curr) =>
-            curr.map((c) => {
-              if (c.id === selectedClaimId) return { ...c, status: "accepted" };
-              if (c.post_item === postId)  return { ...c, status: "rejected" };
-              return c;
-            })
-          );
-    
-          // Optionally, close the modal or indicate success
-          // setActivePost(null);
-          alert("Claim accepted; all others have been rejected.");
-    
-        } catch (err) {
-          console.error("Error selecting claim:", err.response || err);
-          alert("Failed to update claim statuses. Please try again.");
-        }
-      };
   };
+
+  
+
+const handleSelectClaim = async (postId, selectedClaimId) => {
+  if (!token) return;
+  try {
+    await axios.post(
+      `http://localhost:8000/api/claims/${selectedClaimId}/select/`,
+      {},
+      { headers: { Authorization: `Token ${token}` } }
+    );
+
+    const res = await axios.get(
+      `http://localhost:8000/api/claims/?post_item=${postId}`,
+      { headers: { Authorization: `Token ${token}` } }
+    );
+    setClaims(res.data);
+
+    setActivePost(null);
+    alert("Claim accepted; all others have been rejected.");
+  } catch (err) {
+    console.error("Error selecting claim:", err.response || err);
+    alert("Failed to update claim statuses. Please try again.");
+  }
+};
+
 
   return (
     <>
@@ -139,69 +119,74 @@ export default function MyPosts() {
           </div>
         )}
 
-{activePost && (
-        <div className="modal1-container">
-          <div className="modal1">
-            <h3>Claim Requests for "{activePost.category?.name || activePost.name}"</h3>
+        {activePost && (
+          <div className="modal1-container">
+            <div className="modal1">
+              <h3>
+                Claim Requests for "
+                {activePost.category?.name || activePost.name}"
+              </h3>
 
-            <div className="claim-list">
-              {claims.length > 0 ? (
-                claims.map((claim) => (
-                  <div key={claim.id} className="claim-item">
-                    <div className="claim-details-container">
-                      <img
-                        src={claim.image || "https://via.placeholder.com/80"}
-                        alt="claimer"
-                        className="image-claim"
-                      />
-                      <div className="claim-details">
-                        <div className="claim-details--claimer">
+              <div className="claim-list">
+                {claims.length > 0 ? (
+                  claims.map((claim) => (
+                    <div key={claim.id} className="claim-item">
+                      <div className="claim-details-container">
+                        <img
+                          src={claim.image || "https://via.placeholder.com/80"}
+                          alt="claimer"
+                          className="image-claim"
+                        />
+                        <div className="claim-details">
                           <p>
                             <strong>User:</strong> {claim.requester_email}
                           </p>
                           <p>
-                            <strong>Contact:</strong> {claim.requester_phone || "N/A"}
+                            <strong>Contact:</strong>{" "}
+                            {claim.requester_phone || "N/A"}
+                          </p>
+                          <p>
+                            <strong>Message:</strong> {claim.message}
+                          </p>
+                          <p>
+                            <strong>Status:</strong>{" "}
+                            {claim.status.toUpperCase()}
                           </p>
                         </div>
-                        <p>
-                          <strong>Message:</strong> {claim.message}
-                        </p>
-                        <p>
-                          <strong>Status:</strong> {claim.status.toUpperCase()}
-                        </p>
                       </div>
+
+                      {claim.status === "pending" && (
+                        <button
+                          className="select-claim-btn"
+                          onClick={() =>
+                            handleSelectClaim(activePost.id, claim.id)
+                          }
+                        >
+                          Select Claim
+                        </button>
+                      )}
                     </div>
-
-                    {claim.status === "pending" && (
-                      <button
-                        className="select-claim-btn"
-                        onClick={() =>
-                          handleSelectClaim(activePost.id, claim.id)
-                        }
-                      >
-                        Select Claim
-                      </button>
-                    )}
+                  ))
+                ) : (
+                  <div className="empty-claims">
+                    <img
+                      src="https://via.placeholder.com/100"
+                      alt="No claims"
+                    />
+                    <p>No claim requests received.</p>
                   </div>
-                ))
-              ) : (
-                <div className="empty-claims">
-                  <img src="https://via.placeholder.com/100" alt="No claims" />
-                  <p>No claim requests received.</p>
-                </div>
-              )}
+                )}
+              </div>
+
+              <button
+                className="close-modal-btn"
+                onClick={() => setActivePost(null)}
+              >
+                Close
+              </button>
             </div>
-
-            <button
-              className="close-modal-btn"
-              onClick={() => setActivePost(null)}
-            >
-              Close
-            </button>
           </div>
-        </div>
-      )}
-
+        )}
       </div>
     </>
   );

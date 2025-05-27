@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Signing you in…</title>
+    <script>
+      (async () => {
+        const params = new URLSearchParams(window.location.search);
+        const code = params.get("code");
+
+        if (!code) {
+          document.body.innerHTML = "<h2>Login failed: no code returned.</h2>";
+          return;
+        }
+
+        try {
+          // Exchange code for token(s)
+          const resp = await fetch("http://localhost:8000/api/auth/google/", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            // dj-rest-auth’s SocialLoginView expects { code, redirect_uri }
+            body: JSON.stringify({
+              code,
+              redirect_uri: "http://localhost:8000/api/auth/google/callback/"
+            }),
+            credentials: "include"
+          });
+          const data = await resp.json();
+
+          if (resp.ok) {
+            // If you’re using TokenAuthentication (authtoken) you’ll get `data.key`
+            // If you set REST_USE_JWT=True you’ll get `data.access` & `data.refresh`
+            const token = data.key || data.access;
+            if (!token) throw new Error("No token in response");
+
+            localStorage.setItem("token", token);
+            // finally send them back into your React router
+            window.location.href = `http://localhost:5173/GoogleSuccess?token=${token}`;
+          } else {
+            throw new Error(data.detail || JSON.stringify(data));
+          }
+        } catch (err) {
+          document.body.innerHTML = `<h2>Login failed</h2><pre>${err}</pre>`;
+          console.error(err);
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <h2>Signing you in with Google…</h2>
+  </body>
+</html>

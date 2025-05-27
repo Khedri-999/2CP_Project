@@ -109,7 +109,7 @@ const handleSelectClaim = async (postId, selectedClaimId) => {
                     >
                       Delete
                     </button>
-                    <button onClick={() => handleViewClaims(post)}>
+                    <button className="claims-btn" onClick={() => handleViewClaims(post)}>
                       View Claims
                     </button>
                   </div>

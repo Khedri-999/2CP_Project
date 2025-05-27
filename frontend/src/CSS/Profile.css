@@ -1,18 +1,55 @@
 .profile-container {
-  margin-left: 170px;
   padding: 40px 20px;
-  height:100vh; 
+  height: 100vh;
   background-color: #0000006c;
   display: flex;
   align-items: center;
   justify-content: center;
   background-image: url('../assets/estin-landing1.png');
-  background-size: cover;      
-  background-position: center;  
+  background-size: cover;
+  background-position: center;
   background-repeat: no-repeat;
-  
+
+  /* Push content to the right of sidebar */
+  margin-left: 170px;
+  transition: margin-left 0.3s ease;
+}
+
+/* Responsive - collapse sidebar */
+@media (max-width: 768px) {
+  .profile-container {
+    margin-left: 0;
+    padding: 20px 10px;
   }
 
+  .profile-wrapper {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  .profile-background{
+    width: auto;
+  }
+
+  .profile {
+    width: 100%;
+    min-width: auto;
+    height: auto;
+  }
+
+  .profile-content {
+    padding: 10px;
+  }
+
+  .profile-content h1 {
+    font-size: 1.5rem;
+  }
+
+  .profile-buttons {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
 
 @keyframes fadeIn {
   from {
@@ -45,9 +82,13 @@
     margin-bottom: 20px;
   }
   .profile-background{
-    width: 60%;
+    width: 100%;
     height: 40%;
     top: 150px;
+  }
+
+  .profile-info{
+    margin-left: 240px;
   }
 }
 

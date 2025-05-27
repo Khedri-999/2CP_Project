@@ -73,3 +73,45 @@ body.dark-mode .sidebar {
   --link-active: #3a28b5;
   --icon-filter: brightness(0.8);
 }
+
+
+
+.sidebar-toggle {
+  display: none;
+  position: fixed;
+  top: 10px;
+  left: 15px;
+  z-index: 200;
+  background-color: #1b0059;
+  color: white;
+  border: none;
+  font-size: 24px;
+  padding: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .sidebar {
+    position: fixed;
+    left: -200px; /* Hidden by default */
+    top: 60px;
+    width: 170px;
+    height: calc(100% - 60px);
+    background-color: var(--sidebar-bg, #ffffff);
+    z-index: 150;
+    padding-top: 10px;
+    transition: left 0.3s ease;
+  }
+
+  .sidebar.open {
+    left: 0;
+  }
+
+  .sidebar-toggle {
+    display: block;
+  }
+}

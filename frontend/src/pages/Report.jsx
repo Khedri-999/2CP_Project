@@ -113,21 +113,26 @@ export default function Report() {
             required
           >
             <option value="">-- Select --</option>
-            {categories.map((cat) => (
-              <option key={cat.id} value={cat.id}>
-                {cat.name}
-              </option>
+            {categories
+              .filter((cat) => cat.name !== "All")
+              .map((cat) => (
+                <option key={cat.id} value={cat.id}>
+                  {cat.name}
+                </option>
             ))}
-          </select>
+          </select> 
 
-          <label>Item Name:</label>
-          <input
-            type="text"
-            name="name"
-            value={form.name}
-            onChange={handleChange}
-            required
-          />
+          <div className="form-group">
+            <label>Item Name:</label>
+            <input
+              type="text"
+              name="name"
+              value={form.name}
+              onChange={handleChange}
+              required
+            />
+          </div>
+
 
           <label>Description:</label>
           <textarea
@@ -152,23 +157,30 @@ export default function Report() {
             <option value="Amphi">Amphi</option>
           </select>
 
-          <label>Date Found:</label>
-          <input
-            type="date"
-            name="date_found"
-            value={form.date_found}
-            onChange={handleChange}
-            required
-          />
+          <div className="datetime-row">
+            <div className="form-group">
+              <label>Date Found:</label>
+              <input
+                type="date"
+                name="date_found"
+                value={form.date_found}
+                onChange={handleChange}
+                required
+              />
+            </div>
 
-          <label>Time Found:</label>
-          <input
-            type="time"
-            name="time_found"
-            value={form.time_found}
-            onChange={handleChange}
-            required
-          />
+            <div className="form-group">
+              <label>Time Found:</label>
+              <input
+                type="time"
+                name="time_found"
+                value={form.time_found}
+                onChange={handleChange}
+                required
+              />
+            </div>
+          </div>
+
 
           <label>Upload Image:</label>
           <input

@@ -46,6 +46,9 @@ function MyClaims() {
     <SideBar/>
     <div className="my-claims-container">
       <h2>My Claims</h2>
+      {claims.length === 0 ? (
+          <p>You haven’t claimed any items yet.</p>
+        ) : (
       <div className="claims-grid">
       {claims.map((claim) => (
   <div key={claim.id} className={`claim-card ${claim.status}`}>
@@ -57,9 +60,10 @@ function MyClaims() {
     <h3>{claim.name}</h3>
     <p><strong>Found at:</strong> {claim.place}</p>
     <p><strong>Claimed on:</strong> {claim.date}</p>
-    <p className="status-label">
+    {/*<p className="status-label">
       Status: {claim.status.toUpperCase()}
-    </p>
+    </p> */}
+    
 
     {claim.status === "pending" && (
       <button
@@ -89,6 +93,7 @@ function MyClaims() {
 ))}
 
       </div>
+        )}
     </div>
     </>
   );

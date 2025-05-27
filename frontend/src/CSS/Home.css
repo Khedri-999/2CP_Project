@@ -2,10 +2,11 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 20px;
-  padding: 120px 20px 20px 200px;
+  padding: 130px 20px 20px 200px;
   margin: 0 auto;
   max-width: 1600px;
   animation: fadeIn 0.5s ease-in-out;
+  transition: padding-left 0.4s ease;
 }
 
 .item-card .blurred {
@@ -24,6 +25,7 @@
   }
 }
 
+
 .header {
   position: fixed;
   top: 0;
@@ -35,14 +37,14 @@
   padding: 10px 0;
 }
 
-@media (max-width: 550px) {
+@media (max-width: 768px) {
   .items-container {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
     padding-left: 20px;
   }
 }
 
-@media (min-width: 551px) and (max-width: 930px) {
+@media (min-width: 769px) and (max-width: 930px) {
   .items-container {
     grid-template-columns: repeat(2, 1fr);
   }

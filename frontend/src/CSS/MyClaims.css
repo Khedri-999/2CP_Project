@@ -21,6 +21,25 @@
   }
 }
 
+@media (max-width: 768px) {
+  .my-claims-container {
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+  }
+  .claims-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+  
+}
+
+.claim-card h3, .claim-card p {
+  word-break: break-word;
+}
+
+
+
 .my-claims-container h2 {
   text-align: center;
   color: var(--primary-color, #022852);
@@ -97,7 +116,6 @@
   padding: 5px 10px;
   border-radius: 20px;
   font-size: 0.8rem;
-  letter-spacing: 1px;
 }
 
 .status-label.pending {
@@ -125,7 +143,7 @@
   border-radius: 8px;
   font-weight: 500;
   color: var(--finder-text, #28a745);
-  width: 100%;
+  margin-left:auto;
   font-size: 0.9rem;
 }
 
@@ -148,11 +166,13 @@
   display: flex;
   align-items: center;
   gap: 5px;
+  margin-left: auto;
 }
 
 .cancel-btn {
   background: var(--danger-color, #dc3545);
   color: white;
+  margin-right: 40px;
 }
 
 .cancel-btn:hover {

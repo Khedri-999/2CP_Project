@@ -1,21 +1,33 @@
-
 .filter-container {
   display: flex;
-  justify-content: center;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  justify-content: flex-start;
+  align-items: center;
   position: fixed;
-  width: 95%;
-  top: 56px;
+  top: 70px;
   left: 138px;
-  gap: 10px;
-  padding: 20px 5px 5px 15px;
+  right: 0;
+  padding: 8px 60px;
   background-color: var(--bg-color, #ffffff);
   z-index: 99;
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
+  gap: 10px;
   transition: all 0.3s ease;
+  }
+
+.filter-container::-webkit-scrollbar {
+  height: 6px;
+}
+.filter-container::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,0.2);
+  border-radius: 3px;
 }
 
 .filter-container button {
+  flex: 0 0 auto;
   padding: 8px 15px;
   border: none;
   cursor: pointer;
@@ -25,6 +37,7 @@
   font-weight: 500;
   font-size: 0.9rem;
   color: var(--button-text, #333);
+  white-space: nowrap;
 }
 
 .filter-container button:hover {
@@ -41,10 +54,33 @@
   box-shadow: 0 2px 5px rgba(0, 123, 255, 0.3);
 }
 
+/* Tablet & small desktop: full width, still left-aligned */
+@media (max-width: 1024px) {
+  .filter-container {
+    left: 0;
+    width: 100%;
+    border-radius: 0;
+    justify-content: flex-start; /* keep start alignment */
+    padding: 8px 15px;
+  }
+}
 
+/* Mobile: reduced paddings, left-aligned scroll */
+@media (max-width: 600px) {
+  .filter-container {
+    top: 70px; 
+    padding: 8px 10px;
+  }
+
+  .filter-container button {
+    padding: 8px 12px;
+    font-size: 0.85rem;
+  }
+}
+
+/* Dark mode */
 body.dark-mode .filter-container {
   --bg-color: #1e1e1e;
-  --border-color: #444;
   --button-bg: #333;
   --button-text: #eee;
   --button-hover: #0056b3;

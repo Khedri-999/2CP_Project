@@ -34,18 +34,17 @@
   box-shadow: 0 4px 8px rgba(23, 1, 100, 0.3);
 }
 
-.navigationBar .logout-btn {
-  background-color: var(--danger-color, rgba(155, 0, 0, 0.883));
-}
-
-.navigationBar .logout-btn:hover {
-  background-color: var(--danger-hover, rgba(180, 0, 0, 0.883));
-}
 
 .navigationBar .estin-logo {
   width: 11rem;
-  transition: transform 0.3s ease;
+  transition: all 0.3s ease;
   margin-left:-15px;
+}
+
+@media (max-width: 768px) {
+  .navigationBar .estin-logo {
+    margin-left: 50px;
+  }
 }
 
 .navigationBar .estin-logo:hover {
@@ -58,3 +57,4 @@ body.dark-mode .navigationBar {
   --danger-color: #c62828;
   --danger-hover: #b71c1c;
 }
+

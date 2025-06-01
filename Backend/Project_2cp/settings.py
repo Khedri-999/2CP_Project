@@ -69,11 +69,11 @@ ACCOUNT_SIGNUP_FIELDS = ['email*', 'username*', 'password1*', 'password2*']
 
 SOCIALACCOUNT_PROVIDERS = {
     "google": {
-        "CLIENT_ID": "86795754074-n1puig8gnf51it9sngse6c3v0gj15dm8.apps.googleusercontent.com",
-        "SECRET": "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",
+        "CLIENT_ID": "XXX",
+        "SECRET": "XXX",
         "SCOPE": ["email", "profile"],
         "AUTH_PARAMS": {"access_type": "online"},
-        "REDIRECT_URI": "http://localhost:8000/api/auth/google/callback/",
+        "REDIRECT_URI": "XXX",
     }
 }
 
